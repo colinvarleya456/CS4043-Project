@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsa2r0k4y2w04"
-path="res://.godot/imported/texture_06.png-8cfd4172ec36a7ad10d817dd4a4c970a.ctex"
+uid="uid://c7kdjprsn03vj"
+path="res://.godot/imported/environment_adjustments_3d_lut_template.webp-43c4c7b406932ef259249ec278b09705.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://gridTexures/PNG/Red/texture_06.png"
-dest_files=["res://.godot/imported/texture_06.png-8cfd4172ec36a7ad10d817dd4a4c970a.ctex"]
+source_file="res://environment_adjustments_3d_lut_template.webp"
+dest_files=["res://.godot/imported/environment_adjustments_3d_lut_template.webp-43c4c7b406932ef259249ec278b09705.ctex"]
 
 [params]
 

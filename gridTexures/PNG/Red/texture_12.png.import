@@ -3,21 +3,23 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bwt3gg0ccr4r5"
-path="res://.godot/imported/texture_12.png-b170f4b32cbb2c4041a4f7a671878e51.ctex"
+path="res://.godot/imported/texture_12.png-7507f0c5138645741f300c426d19b119.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://new folder/gridTexures/PNG/Red/texture_12.png"
-dest_files=["res://.godot/imported/texture_12.png-b170f4b32cbb2c4041a4f7a671878e51.ctex"]
+source_file="res://gridTexures/PNG/Red/texture_12.png"
+dest_files=["res://.godot/imported/texture_12.png-7507f0c5138645741f300c426d19b119.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
