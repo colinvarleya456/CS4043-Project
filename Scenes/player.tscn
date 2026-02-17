@@ -4,14 +4,27 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0iea"]
+transparency = 1
+albedo_color = Color(0, 0.94509804, 0, 0.19215687)
+
+[sub_resource type="SphereMesh" id="SphereMesh_v0iea"]
+material = SubResource("StandardMaterial3D_v0iea")
+radius = 0.25
+height = 0.5
+
 [node name="Player" type="CharacterBody3D" unique_id=1623261914]
 script = ExtResource("1_v0iea")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1976610256]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 
 [node name="CameraHolder" type="Node3D" parent="." unique_id=830420839]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CameraHolder" unique_id=1976610256]
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1393535297]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_f60y1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=854351361]
+mesh = SubResource("SphereMesh_v0iea")

@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
-@onready var camera_3d: Camera3D = $CameraHolder/Camera3D
+
+@onready var camera_3d: Camera3D = $Camera3D
 
 
 @export var camMaxAngle : float = 90
@@ -41,8 +42,8 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x) * camSensHorizontal)
-		camera_3d.get_parent().rotate_x(deg_to_rad(-event.relative.y) * camSensVertical)
-		camera_3d.get_parent().rotation.x = clamp(camera_3d.get_parent().rotation.x, deg_to_rad(camMinAngle), deg_to_rad(camMaxAngle))
+		camera_3d.rotate_x(deg_to_rad(-event.relative.y) * camSensVertical)
+		camera_3d.rotation.x = clamp(camera_3d.rotation.x, deg_to_rad(camMinAngle), deg_to_rad(camMaxAngle))
 
 	if Input.is_action_just_pressed("z"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
