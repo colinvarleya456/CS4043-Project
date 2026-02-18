@@ -4,14 +4,91 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v0iea"]
-transparency = 1
-albedo_color = Color(0, 0.94509804, 0, 0.19215687)
+[sub_resource type="Animation" id="Animation_cvnsp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerCollision:shape:height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.75, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("crouchCast:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.5, 0)]
+}
 
-[sub_resource type="SphereMesh" id="SphereMesh_v0iea"]
-material = SubResource("StandardMaterial3D_v0iea")
-radius = 0.25
-height = 0.5
+[sub_resource type="Animation" id="Animation_v0iea"]
+resource_name = "crouch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerCollision:shape:height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.75, 0), Vector3(0, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("crouchCast:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.5, 0), Vector3(0, 2, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cvnsp"]
+_data = {
+&"RESET": SubResource("Animation_cvnsp"),
+&"crouch": SubResource("Animation_v0iea")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v0iea"]
 
 [node name="Player" type="CharacterBody3D" unique_id=1623261914]
 script = ExtResource("1_v0iea")
@@ -19,12 +96,15 @@ script = ExtResource("1_v0iea")
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1976610256]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 
-[node name="CameraHolder" type="Node3D" parent="." unique_id=830420839]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1393535297]
+[node name="playerCollision" type="CollisionShape3D" parent="." unique_id=1393535297]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_f60y1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=854351361]
-mesh = SubResource("SphereMesh_v0iea")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1473184451]
+libraries/ = SubResource("AnimationLibrary_cvnsp")
+
+[node name="crouchCast" type="ShapeCast3D" parent="." unique_id=385841083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("SphereShape3D_v0iea")
+target_position = Vector3(0, 0, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
