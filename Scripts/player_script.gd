@@ -3,6 +3,9 @@ extends CharacterBody3D
 
 @onready var camera_3d: Camera3D = $Camera3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var player_collision: CollisionShape3D = $playerCollision
+@onready var interact_cast: RayCast3D = $Camera3D/interactCast
+@onready var crouch_cast: ShapeCast3D = $crouchCast
 
 @export_category("Camera")
 @export var camMaxAngle : float = 90
@@ -19,6 +22,7 @@ extends CharacterBody3D
 
 @export var movementSpeed = 5.0
 @export var jumpVelocity = 4.5
+@export var isCrouch : bool = false
 
 func _ready() -> void:
 	assignPlayerInfo()
@@ -45,8 +49,6 @@ func _physics_process(delta: float) -> void:
 func _process(delta: float) -> void:
 	pass
 
-@export var isCrouch : bool = false
-
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotate_y(deg_to_rad(-event.relative.x) * camSensHorizontal)
@@ -67,15 +69,10 @@ func _input(event: InputEvent) -> void:
 				animation_player.play_backwards("crouch")
 				isCrouch = !isCrouch
 	
+	if Input.is_action_just_pressed("lmb"):
+		interactFunc()
+	
 	#elif Input.is_action_just_released("control"):
-	#	
-
-
-
-
-@onready var player_collision: CollisionShape3D = $playerCollision
-
-@onready var crouch_cast: ShapeCast3D = $crouchCast
 
 func assignPlayerInfo():
 	player_collision.shape.height = standingHeight
@@ -87,4 +84,33 @@ func assignPlayerInfo():
 	animation_player.get_animation("crouch").track_set_key_value(1,1, standingHeight)
 	
 	animation_player.speed_scale = 1 / crouchSpeed
-	
+
+func interactFunc():
+	interact_cast.force_raycast_update()
+	if interact_cast.is_colliding():
+		interact_cast.get_collider().emit_signal("interact")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pass

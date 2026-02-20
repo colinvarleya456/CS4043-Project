@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b6u1r1yu0h2t0" path="res://addons/AllSkyFree_Godot_itchio (1)/new folder/Cold Sunset Equirect.png" id="1_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://bsvf3sjsmi6d7" path="res://Scenes/player.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://cx6oke5efwurt" path="res://Scenes/testing_area_model.tscn" id="3_5a7ea"]
+[ext_resource type="PackedScene" uid="uid://n7tubvnb8cwe" path="res://Scenes/door.tscn" id="4_8j60k"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5a7ea"]
 panorama = ExtResource("1_5a7ea")
@@ -33,6 +34,11 @@ environment = SubResource("Environment_5a7ea")
 camMinAngle = -90.0
 
 [node name="TestingAreaModel" parent="3D" unique_id=311291670 instance=ExtResource("3_5a7ea")]
+
+[node name="door" parent="3D" unique_id=1109938094 instance=ExtResource("4_8j60k")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.3296368, 0, -2.8433506)
+isOpenInwards = true
+moveSpeed = 0.2
 
 [node name="MainMenu" type="Control" parent="." unique_id=1683735307]
 layout_mode = 3
