@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bsvf3sjsmi6d7" path="res://Scenes/player.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://cx6oke5efwurt" path="res://Scenes/testing_area_model.tscn" id="3_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://n7tubvnb8cwe" path="res://Scenes/door.tscn" id="4_8j60k"]
+[ext_resource type="PackedScene" uid="uid://bqo4a4j00uqm2" path="res://Scenes/box_pickup.tscn" id="5_fo5ed"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5a7ea"]
 panorama = ExtResource("1_5a7ea")
@@ -39,6 +40,30 @@ camMinAngle = -90.0
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.3296368, 0, -2.8433506)
 isOpenInwards = true
 moveSpeed = 0.2
+
+[node name="boxPickup" parent="3D" unique_id=2035561427 instance=ExtResource("5_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 2)
+isHeld = null
+
+[node name="boxPickup2" parent="3D" unique_id=221109558 instance=ExtResource("5_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
+isHeld = null
+
+[node name="boxPickup3" parent="3D" unique_id=226471039 instance=ExtResource("5_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 2)
+isHeld = null
+
+[node name="boxPickup4" parent="3D" unique_id=1424760301 instance=ExtResource("5_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1.5, 2)
+isHeld = null
+
+[node name="boxPickup5" parent="3D" unique_id=1520458602 instance=ExtResource("5_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 1.5, 2)
+isHeld = null
+
+[node name="boxPickup6" parent="3D" unique_id=1816048681 instance=ExtResource("5_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 2)
+isHeld = null
 
 [node name="MainMenu" type="Control" parent="." unique_id=1683735307]
 layout_mode = 3

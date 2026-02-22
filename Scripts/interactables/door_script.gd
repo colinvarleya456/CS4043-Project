@@ -1,6 +1,6 @@
 extends StaticBody3D
 
-signal interact
+signal interact(player)
 
 @export var isOpenInwards : bool = false
 @export_range(0,1,.1) var moveSpeed : float
@@ -16,8 +16,8 @@ func _ready() -> void:
 	
 	targetRotation = startAngle
 
-func interactFunc():
-	print("interact called")
+func interactFunc(player):
+	print("interact called : ",player)
 	if !isOpenInwards:
 		if targetRotation == startAngle + 90:
 			targetRotation = startAngle

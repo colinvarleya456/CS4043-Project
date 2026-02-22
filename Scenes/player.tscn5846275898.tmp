@@ -91,16 +91,14 @@ _data = {
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_v0iea"]
 
-[node name="Player" type="CharacterBody3D" unique_id=1623261914 node_paths=PackedStringArray("player_cam", "gun_holder", "held_object_position")]
+[node name="Player" type="CharacterBody3D" unique_id=1623261914 node_paths=PackedStringArray("player_cam", "held_object_position")]
 script = ExtResource("1_v0iea")
 player_cam = NodePath("Camera3D")
-gun_holder = NodePath("Camera3D/gunHolder")
 held_object_position = NodePath("Camera3D/heldObjectPosition")
 throwStrength = 10.0
 cam_rotation_amount = 0.1
-weapon_sway_amount = 0.01
-weapon_rotation_amount = 0.004
-invert_weapon_sway = true
+weapon_sway_amount = 22.775
+weapon_rotation_amount = 0.02
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1976610256]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
@@ -110,11 +108,6 @@ target_position = Vector3(0, 0, -3)
 
 [node name="heldObjectPosition" type="Node3D" parent="Camera3D" unique_id=320950038]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
-
-[node name="gunHolder" type="Node3D" parent="Camera3D" unique_id=538680957]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.187, -0.13300002, -0.561)
-
-[node name="Fn Fal" parent="Camera3D/gunHolder" unique_id=62793824 instance=ExtResource("2_cvnsp")]
 
 [node name="playerCollision" type="CollisionShape3D" parent="." unique_id=1393535297]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -129,4 +122,9 @@ shape = SubResource("SphereShape3D_v0iea")
 target_position = Vector3(0, 0, 0)
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
-[editable path="Camera3D/gunHolder/Fn Fal"]
+[node name="gunHolder" type="Node3D" parent="." unique_id=538680957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.187, 1.617, -0.561)
+
+[node name="Fn Fal" parent="gunHolder" unique_id=62793824 instance=ExtResource("2_cvnsp")]
+
+[editable path="gunHolder/Fn Fal"]
