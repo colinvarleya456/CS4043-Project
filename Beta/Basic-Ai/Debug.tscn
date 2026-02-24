@@ -2,19 +2,18 @@
 
 [ext_resource type="Script" uid="uid://m4i4qnjvgwpy" path="res://Beta/Basic-Ai/debug.gd" id="1_3vf75"]
 
-[node name="debug" type="Control" unique_id=710042240]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="debug" type="CanvasLayer" unique_id=590557568]
+layer = 2
+follow_viewport_enabled = true
 script = ExtResource("1_3vf75")
 
 [node name="console" type="RichTextLabel" parent="." unique_id=282549861]
-layout_mode = 0
 offset_left = 1343.0
 offset_top = 377.0
 offset_right = 1915.0
 offset_bottom = 1075.0
+text = "10
+10
+10
+10"
 vertical_alignment = 2

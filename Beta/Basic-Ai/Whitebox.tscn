@@ -4,8 +4,8 @@
 [ext_resource type="NavigationMesh" uid="uid://lvng2l4hlefj" path="res://Beta/Basic-Ai/Test Scene.tres" id="3_d4m5l"]
 [ext_resource type="Texture2D" uid="uid://b6u1r1yu0h2t0" path="res://addons/AllSkyFree_Godot_itchio (1)/new folder/Cold Sunset Equirect.png" id="4_p3fvp"]
 [ext_resource type="Script" uid="uid://sc6uc5gpboeb" path="res://Beta/Basic-Ai/CollisionGenerator.gd" id="4_r2wna"]
-[ext_resource type="Script" uid="uid://bcpheb1dvl57n" path="res://Beta/Basic-Ai/test_npc.gd" id="4_x6mqx"]
 [ext_resource type="ArrayMesh" uid="uid://bum87g4mu7nce" path="res://Beta/Basic-Ai/Blueprint.obj" id="5_6yjvk"]
+[ext_resource type="Script" uid="uid://hd8eyvj0s6d1" path="res://Beta/Basic-Ai/npc_manager.gd" id="7_6yjvk"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_x6mqx"]
 panorama = ExtResource("4_p3fvp")
@@ -20,10 +20,6 @@ background_energy_multiplier = 0.8
 sky = SubResource("Sky_go701")
 tonemap_mode = 2
 glow_enabled = true
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d4m5l"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_p3fvp"]
 
 [node name="Whitebox" type="Node3D" unique_id=2057276693]
 
@@ -46,16 +42,129 @@ script = ExtResource("4_r2wna")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.918192, 0, 5.4699464)
 mesh = ExtResource("5_6yjvk")
 
-[node name="Test NPC" type="CharacterBody3D" parent="." unique_id=304061111]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8274808, 1.3139277, 0.7149594)
-script = ExtResource("4_x6mqx")
+[node name="Markers" type="Node" parent="." unique_id=1897037227]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Test NPC" unique_id=95569479]
-shape = SubResource("CapsuleShape3D_d4m5l")
+[node name="Entrance 1" type="Marker3D" parent="Markers" unique_id=1117165742]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 96.25778, 0, -86.5437)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Test NPC" unique_id=2095555169]
-mesh = SubResource("CapsuleMesh_p3fvp")
+[node name="Mail Office" type="Marker3D" parent="Markers" unique_id=275375459]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.93451, 0, 148.80215)
 
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="Test NPC" unique_id=1813632820]
-simplify_path = true
-debug_enabled = true
+[node name="Store 1" type="Marker3D" parent="Markers" unique_id=795355810]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115.244415, 0, 96.69932)
+
+[node name="Store 2" type="Marker3D" parent="Markers" unique_id=1590469887]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -112.59509, 0, 61.816917)
+
+[node name="Store 3" type="Marker3D" parent="Markers" unique_id=497429514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.478226, 0, 25.168324)
+
+[node name="Store 4" type="Marker3D" parent="Markers" unique_id=963770589]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116.12752, 0, -11.921828)
+
+[node name="Store 5" type="Marker3D" parent="Markers" unique_id=536433331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -114.36131, 0, -52.98593)
+
+[node name="Store 6" type="Marker3D" parent="Markers" unique_id=1906683771]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115.2444, 0, -90.07608)
+
+[node name="Store 7" type="Marker3D" parent="Markers" unique_id=1949467134]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -113.91977, 0, -121.86764)
+
+[node name="Store 8" type="Marker3D" parent="Markers" unique_id=553688009]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.08946, 0, 100.67326)
+
+[node name="Store 9" type="Marker3D" parent="Markers" unique_id=1488970082]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.41411, 0, 82.12819)
+
+[node name="Store 10" type="Marker3D" parent="Markers" unique_id=2052104121]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.297195, 0, 59.60917)
+
+[node name="Store 11" type="Marker3D" parent="Markers" unique_id=861096803]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -71.53102, 0, 41.064087)
+
+[node name="Store 12" type="Marker3D" parent="Markers" unique_id=1871994393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.154922, 0, 101.114815)
+
+[node name="Store 13" type="Marker3D" parent="Markers" unique_id=292087151]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45.47957, 0, 82.56974)
+
+[node name="Store 14" type="Marker3D" parent="Markers" unique_id=1302396915]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.362656, 0, 60.05072)
+
+[node name="Store 15" type="Marker3D" parent="Markers" unique_id=584353063]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44.59648, 0, 41.50564)
+
+[node name="Store 16" type="Marker3D" parent="Markers" unique_id=2089405262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0908356, 0, 78.154236)
+
+[node name="Store 17" type="Marker3D" parent="Markers" unique_id=1324888071]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.056244, 0, 78.98898)
+
+[node name="Store 18" type="Marker3D" parent="Markers" unique_id=1309854308]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.820602, 0, 77.87598)
+
+[node name="Store 19" type="Marker3D" parent="Markers" unique_id=245202698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.42935, 0, 50.88562)
+
+[node name="Store 20" type="Marker3D" parent="Markers" unique_id=80443839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.872833, 0, 25.564777)
+
+[node name="Store 21" type="Marker3D" parent="Markers" unique_id=1179272090]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.494263, 0, -20.619247)
+
+[node name="Store 22" type="Marker3D" parent="Markers" unique_id=1472950576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.494293, 0, -55.446545)
+
+[node name="Store 23" type="Marker3D" parent="Markers" unique_id=929538227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.938324, 0, -58.096447)
+
+[node name="Store 24" type="Marker3D" parent="Markers" unique_id=15809254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -58.68782, 0, -133.05084)
+
+[node name="Store 25" type="Marker3D" parent="Markers" unique_id=1493978498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.567337, 0, -127.37248)
+
+[node name="Store 26" type="Marker3D" parent="Markers" unique_id=1441798439]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.559784, 0, -117.15143)
+
+[node name="Store 27" type="Marker3D" parent="Markers" unique_id=45436774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 49.20111, 0, -118.66565)
+
+[node name="Store 28" type="Marker3D" parent="Markers" unique_id=40425572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.46954, 0, -55.80894)
+
+[node name="Store 29" type="Marker3D" parent="Markers" unique_id=14949742]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.55969, 0, -24.907547)
+
+[node name="Store 30" type="Marker3D" parent="Markers" unique_id=1516359416]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.4996, 0, 4.963833)
+
+[node name="Store 31" type="Marker3D" parent="Markers" unique_id=1561661042]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 81.04468, 0, 36.895298)
+
+[node name="Store 32" type="Marker3D" parent="Markers" unique_id=1976629367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.49963, 0, 64.706566)
+
+[node name="Store 33" type="Marker3D" parent="Markers" unique_id=98245979]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.89444, 0, 94.06291)
+
+[node name="Store 34" type="Marker3D" parent="Markers" unique_id=1297780940]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 78.8461, 0, 118.73175)
+
+[node name="Restaraunt 1" type="Marker3D" parent="Markers" unique_id=697563166]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.16765, 0, -52.986053)
+
+[node name="Restaraunt 2" type="Marker3D" parent="Markers" unique_id=187036196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -59.16765, 0, -3.5324936)
+
+[node name="Restaraunt 3" type="Marker3D" parent="Markers" unique_id=321610175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.389465, 0, -22.51912)
+
+[node name="Restaraunt 4" type="Marker3D" parent="Markers" unique_id=584165918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5063477, 0, 43.713326)
+
+[node name="NPC Manager" type="Node" parent="." unique_id=1183789877 node_paths=PackedStringArray("marker_entrance", "stores")]
+script = ExtResource("7_6yjvk")
+marker_entrance = NodePath("../Markers/Entrance 1")
+stores = [NodePath("../Markers/Store 1"), NodePath("../Markers/Store 1"), NodePath("../Markers/Store 2"), NodePath("../Markers/Store 3"), NodePath("../Markers/Store 4"), NodePath("../Markers/Store 5"), NodePath("../Markers/Store 6"), NodePath("../Markers/Store 7"), NodePath("../Markers/Store 8"), NodePath("../Markers/Store 9"), NodePath("../Markers/Store 10"), NodePath("../Markers/Store 11"), NodePath("../Markers/Store 12"), NodePath("../Markers/Store 13"), NodePath("../Markers/Store 14"), NodePath("../Markers/Store 15"), NodePath("../Markers/Store 16"), NodePath("../Markers/Store 17"), NodePath("../Markers/Store 18"), NodePath("../Markers/Store 19"), NodePath("../Markers/Store 20"), NodePath("../Markers/Store 21"), NodePath("../Markers/Store 22"), NodePath("../Markers/Store 23"), NodePath("../Markers/Store 24"), NodePath("../Markers/Store 25"), NodePath("../Markers/Store 26"), NodePath("../Markers/Store 27"), NodePath("../Markers/Store 28"), NodePath("../Markers/Store 29"), NodePath("../Markers/Store 30"), NodePath("../Markers/Store 31"), NodePath("../Markers/Store 32"), NodePath("../Markers/Store 33"), NodePath("../Markers/Store 34")]

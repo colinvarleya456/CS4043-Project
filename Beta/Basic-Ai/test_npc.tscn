@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b8ly4kxarrltx"]
+
+[ext_resource type="Script" uid="uid://bcpheb1dvl57n" path="res://Beta/Basic-Ai/test_npc.gd" id="1_1o6k0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d4m5l"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_p3fvp"]
+
+[node name="Test NPC" type="CharacterBody3D" unique_id=824026055]
+script = ExtResource("1_1o6k0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1984509121]
+shape = SubResource("CapsuleShape3D_d4m5l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1057156544]
+mesh = SubResource("CapsuleMesh_p3fvp")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=780956865]
+simplify_path = true
+debug_enabled = true
