@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://bsvf3sjsmi6d7"]
+
+[ext_resource type="Script" uid="uid://g35fecu7kgrn" path="res://Scripts/player_script.gd" id="1_v0iea"]
+[ext_resource type="PackedScene" uid="uid://dssoxo8ue5gtn" path="res://Scenes/guns/fn_fal.tscn" id="2_cvnsp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
+
+[sub_resource type="Animation" id="Animation_cvnsp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerCollision:shape:height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [2.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.75, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("crouchCast:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.5, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_v0iea"]
+resource_name = "crouch"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("playerCollision:shape:height")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.75, 0), Vector3(0, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("crouchCast:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 2.5, 0), Vector3(0, 2, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cvnsp"]
+_data = {
+&"RESET": SubResource("Animation_cvnsp"),
+&"crouch": SubResource("Animation_v0iea")
+}
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_v0iea"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1623261914 node_paths=PackedStringArray("player_cam", "gun_holder", "held_object_position")]
+script = ExtResource("1_v0iea")
+player_cam = NodePath("Camera3D")
+gun_holder = NodePath("Camera3D/gunHolder")
+held_object_position = NodePath("Camera3D/heldObjectPosition")
+throwStrength = 10.0
+cam_rotation_amount = 0.1
+weapon_sway_amount = 0.01
+weapon_rotation_amount = 0.004
+invert_weapon_sway = true
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1976610256]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
+
+[node name="interactCast" type="RayCast3D" parent="Camera3D" unique_id=1738658246]
+target_position = Vector3(0, 0, -3)
+
+[node name="heldObjectPosition" type="Node3D" parent="Camera3D" unique_id=320950038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="gunHolder" type="Node3D" parent="Camera3D" unique_id=538680957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.187, -0.13300002, -0.561)
+
+[node name="Fn Fal" parent="Camera3D/gunHolder" unique_id=62793824 instance=ExtResource("2_cvnsp")]
+
+[node name="playerCollision" type="CollisionShape3D" parent="." unique_id=1393535297]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_f60y1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1473184451]
+libraries/ = SubResource("AnimationLibrary_cvnsp")
+
+[node name="crouchCast" type="ShapeCast3D" parent="." unique_id=385841083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("SphereShape3D_v0iea")
+target_position = Vector3(0, 0, 0)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[editable path="Camera3D/gunHolder/Fn Fal"]

@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://bfp1mq1avkvuu"]
+
+[ext_resource type="Texture2D" uid="uid://b6u1r1yu0h2t0" path="res://addons/AllSkyFree_Godot_itchio (1)/new folder/Cold Sunset Equirect.png" id="1_5a7ea"]
+[ext_resource type="Script" uid="uid://d0vncpvxgi4le" path="res://Scenes/world.gd" id="1_5ukr8"]
+[ext_resource type="PackedScene" uid="uid://bsvf3sjsmi6d7" path="res://Scenes/player.tscn" id="1_a02cp"]
+[ext_resource type="PackedScene" uid="uid://cx6oke5efwurt" path="res://Scenes/testing_area_model.tscn" id="3_5a7ea"]
+[ext_resource type="PackedScene" uid="uid://n7tubvnb8cwe" path="res://Scenes/door.tscn" id="4_8j60k"]
+[ext_resource type="PackedScene" uid="uid://bqo4a4j00uqm2" path="res://Scenes/box_pickup.tscn" id="5_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://b6uauhcp2wtnm" path="res://Scenes/sliding_door.tscn" id="7_o06y3"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5a7ea"]
+panorama = ExtResource("1_5a7ea")
+energy_multiplier = 0.8
+
+[sub_resource type="Sky" id="Sky_go701"]
+sky_material = SubResource("PanoramaSkyMaterial_5a7ea")
+
+[sub_resource type="Environment" id="Environment_5a7ea"]
+background_mode = 2
+background_energy_multiplier = 0.8
+sky = SubResource("Sky_go701")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="World" type="Node" unique_id=276789030]
+script = ExtResource("1_5ukr8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2125569955]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=366777673]
+environment = SubResource("Environment_5a7ea")
+
+[node name="3D" type="Node3D" parent="." unique_id=1960798453]
+
+[node name="Player" parent="3D" unique_id=1623261914 instance=ExtResource("1_a02cp")]
+camMinAngle = -90.0
+
+[node name="TestingAreaModel" parent="3D" unique_id=311291670 instance=ExtResource("3_5a7ea")]
+
+[node name="door" parent="3D" unique_id=1109938094 instance=ExtResource("4_8j60k")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.3296368, 0, -2.8433506)
+isOpenInwards = true
+moveSpeed = 0.2
+
+[node name="boxPickup" parent="3D" unique_id=2035561427 instance=ExtResource("5_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 2)
+
+[node name="boxPickup2" parent="3D" unique_id=221109558 instance=ExtResource("5_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
+
+[node name="boxPickup3" parent="3D" unique_id=226471039 instance=ExtResource("5_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 2)
+
+[node name="boxPickup4" parent="3D" unique_id=1424760301 instance=ExtResource("5_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1.5, 2)
+
+[node name="boxPickup5" parent="3D" unique_id=1520458602 instance=ExtResource("5_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 1.5, 2)
+
+[node name="boxPickup6" parent="3D" unique_id=1816048681 instance=ExtResource("5_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 2)
+
+[node name="Sliding Door" parent="3D" unique_id=354695815 instance=ExtResource("7_o06y3")]
+transform = Transform3D(1, 0, 0, 0, 2.2346969, 0, 0, 0, 1, 5.912215, 1.250001, -5.140668)
+
+[node name="MainMenu" type="Control" parent="." unique_id=1683735307]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[editable path="3D/TestingAreaModel"]
