@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 	
 	var next_position = agent.get_next_path_position()
 	
-	if (position - next_position).y < 0 and is_on_floor():
+	if false and (position - next_position).y < 0 and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		
 	var direction = position.direction_to(next_position)
