@@ -1,5 +1,5 @@
 extends CharacterBody3D
-
+var lock := true
 
 @export var player_cam : Camera3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -56,7 +56,21 @@ func _physics_process(delta: float) -> void:
 	#weapon_bob(velocity.length(),delta)
 	move_and_slide()
 
+
+# Locks the mouse at the center of the screen
+func mouselock():
+	if lock == true:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if Input.is_action_just_pressed("mouse lock") and lock == true:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		lock = false
+	elif Input.is_action_just_pressed("mouse lock") and lock == false:
+		lock = true
+	
+
 func _process(delta: float) -> void:
+	mouselock()
+
 	if Input.is_action_pressed("lmb"):
 		gun_holder.get_child(0).canShoot = true
 		aiming = true
