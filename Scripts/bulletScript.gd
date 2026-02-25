@@ -11,10 +11,10 @@ enum ammoTypes {NORMAL, EXPLOSIVE, HOLLOWPOINT}
 
 
 #@onready var shape_cast_3d: ShapeCast3D = $ShapeCast3D
-@onready var gpu_trail_3d: GPUTrail3D = $GPUTrail3D
-@onready var gpu_particles_3d: GPUParticles3D = $GPUParticles3D
-@onready var world: Node3D = get_tree().get_root().get_node("main")
-@onready var shape_cast_3d: RayCast3D = $RayCast3D
+@onready var gpu_trail_3d : GPUTrail3D = $GPUTrail3D
+@onready var gpu_particles_3d : GPUParticles3D = $GPUParticles3D
+@onready var world : Node = get_tree().get_root().get_node("World")
+@onready var shape_cast_3d : RayCast3D = $RayCast3D
 
 func _ready() -> void:
 	despawn()
@@ -31,11 +31,7 @@ func _physics_process(delta: float) -> void:
 	
 	
 	if shape_cast_3d.is_colliding():
-		if ammoType == ammoTypes.EXPLOSIVE:
-			#print("EXPLOSIVE BULLET EXPLODE")
-			gpu_particles_3d.emitting = true
-			gpu_particles_3d.reparent(world)
-			
+
 		
 		
 		if shape_cast_3d.get_collider() != null:

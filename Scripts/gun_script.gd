@@ -133,7 +133,7 @@ func recoil():
 
 func ads():
 	aiming = true
-	adsPlayer.get_animation("ads").track_set_key_value(0,1,Vector3(-0.175, .05,0))
+	adsPlayer.get_animation("ads").track_set_key_value(0,1,Vector3(-0.187, 0.045,0))
 	adsPlayer.play("ads")
 
 func un_ads():
