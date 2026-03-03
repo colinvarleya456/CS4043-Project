@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bsvf3sjsmi6d7"]
 
 [ext_resource type="Script" uid="uid://g35fecu7kgrn" path="res://Scripts/player_script.gd" id="1_v0iea"]
-[ext_resource type="PackedScene" uid="uid://dssoxo8ue5gtn" path="res://Scenes/guns/fn_fal.tscn" id="2_cvnsp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f60y1"]
 
@@ -114,9 +113,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 [node name="gunHolder" type="Node3D" parent="Camera3D" unique_id=538680957]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.187, -0.13300002, -0.561)
 
-[node name="Fn Fal" parent="Camera3D/gunHolder" unique_id=62793824 instance=ExtResource("2_cvnsp")]
-visible = false
-
 [node name="playerCollision" type="CollisionShape3D" parent="." unique_id=1393535297]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_f60y1")
@@ -129,5 +125,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 shape = SubResource("SphereShape3D_v0iea")
 target_position = Vector3(0, 0, 0)
 debug_shape_custom_color = Color(1, 0, 0, 1)
-
-[editable path="Camera3D/gunHolder/Fn Fal"]

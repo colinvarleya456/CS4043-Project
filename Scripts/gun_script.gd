@@ -22,8 +22,8 @@ enum weaponTypes {PISTOL, RIFLE, SMG, SNIPER, LMG}
 @export var timeToDespawn : float
 @export var vRecoil : float
 @export var hRecoil : float
-@export var gunSound : int
-
+@export var gunSFX : Array[AudioStreamWAV]
+@export var silencedGunSFX : Array[AudioStreamWAV]
 
 @onready var end_of_barrel: Node3D = $Armature/Skeleton3D/a/end_of_barrel
 @onready var end_of_barrel_look_at: Node3D = $Armature/Skeleton3D/a/end_of_barrel_look_at
@@ -31,9 +31,9 @@ enum weaponTypes {PISTOL, RIFLE, SMG, SNIPER, LMG}
 @onready var world: Node = get_tree().get_root().get_node("World")
 @onready var gun_audio: AudioStreamPlayer3D = $gun_audio
 
-@export var gunSFX1 : AudioStreamWAV = preload("res://Snake's Authentic Gun Sounds/Full Sound/5.56/WAV/556 Single WAV.wav")
-@export var gunSFX2 : AudioStreamWAV = preload("res://Snake's Authentic Gun Sounds/Full Sound/7.62x39/WAV/762x39 Single WAV.wav")
-@export var gunSFX3 : AudioStreamWAV = preload("res://Snake's Authentic Gun Sounds/Full Sound/7.62x54R/WAV/762x54r Single WAV.wav")
+#@export var gunSFX1 : AudioStreamWAV = preload("res://Snake's Authentic Gun Sounds/Full Sound/5.56/WAV/556 Single WAV.wav")
+#@export var gunSFX2 : AudioStreamWAV = preload("res://Snake's Authentic Gun Sounds/Full Sound/7.62x39/WAV/762x39 Single WAV.wav")
+#@export var gunSFX3 : AudioStreamWAV = preload("res://Snake's Authentic Gun Sounds/Full Sound/7.62x54R/WAV/762x54r Single WAV.wav")
 
 @export var muzzle_point: Node3D
 #@export var side_point: Node3D
@@ -57,8 +57,11 @@ func _ready():
 	add_user_signal("addAttachment")
 	connect("addAttachment", Callable(self, "try_add_attachment"))
 	fire()
-	assignFireSound()
+	#assignFireSound()
 	updateAmmoUI()
+	if silenced:
+		addSilencer()
+		
 
 func _input(event):
 	if event.is_action_pressed("r"):
@@ -78,7 +81,6 @@ func stop_shoot():
 	canShoot = false
 
 func fire() -> void:
-	print("fire")
 	if ammo >= 1 and canShoot == true and reloading == false:
 		var bullet = load("res://Scenes/bullet.tscn")
 		var bulletInstance = bullet.instantiate()
@@ -89,13 +91,14 @@ func fire() -> void:
 		bulletInstance.trailColour = trailColour
 		bulletInstance.damage = damage
 		bulletInstance.timeToDespawn = timeToDespawn
-		gun_audio.play()
+		playFireSFX()
 		ammo -= 1
 		
-		var muzzleflashins = load("res://Scenes/muzzle_flash.tscn")
-		muzzleflashins = muzzleflashins.instantiate()
-		muzzleflashins.emitting = true
-		end_of_barrel.add_child(muzzleflashins)
+		if !silenced:
+			var muzzleflashins = load("res://Scenes/muzzle_flash.tscn")
+			muzzleflashins = muzzleflashins.instantiate()
+			muzzleflashins.emitting = true
+			end_of_barrel.add_child(muzzleflashins)
 		updateAmmoUI()
 		recoil()
 		
@@ -124,9 +127,18 @@ func updateAmmoUI():
 	pass
 
 func recoil():
-	pass
-	#get_parent().get_parent().get_parent().rotation_degrees.x += vRecoil
-	#get_parent().get_parent().get_parent().get_parent().rotation_degrees.y += randi_range(-1,1) * hRecoil
+	get_parent().get_parent().rotation_degrees.x += vRecoil
+	recoilAccumulation += vRecoil
+
+@export_range(0,1,.01) var recoilCalming : float
+@export var recoilAccumulation : float
+
+func _physics_process(delta: float) -> void:
+	if recoilAccumulation > 0.1:
+		print(">0")
+		get_parent().get_parent().rotation_degrees.x = lerpf(get_parent().get_parent().rotation_degrees.x, 0, recoilCalming)
+		recoilAccumulation = lerpf(recoilAccumulation, 0, recoilCalming)
+
 
 @onready var aiming : bool = false
 @onready var adsPlayer: AnimationPlayer = $ads
@@ -162,11 +174,21 @@ func try_add_attachment(model):
 		4:
 			pass
 
-func assignFireSound():
-	match gunSound:
-		0:
-			gun_audio.stream = gunSFX1
-		1:
-			gun_audio.stream = gunSFX2
-		2:
-			gun_audio.stream = gunSFX3
+@onready var sfx: Node3D = $sfx
+
+@onready var sfxScene = load("res://Scenes/gun_sfx.tscn")
+
+@export var silenced : bool = false
+
+func playFireSFX():
+	if len(gunSFX) > 0:
+		var temp : AudioStreamPlayer3D = sfxScene.instantiate()
+		if !silenced:
+			temp.stream = gunSFX[randi_range(0, len(gunSFX) - 1)]
+		else:
+			temp.stream = silencedGunSFX[randi_range(0, len(silencedGunSFX) - 1)]
+		sfx.add_child(temp)
+		temp.play()
+
+func addSilencer():
+	end_of_barrel.add_child(load("res://Blender/silencer.blend").instantiate())

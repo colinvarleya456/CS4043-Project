@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bqo4a4j00uqm2"]
 
-[ext_resource type="Script" uid="uid://bi63nyuscmtcu" path="res://Scripts/interactables/box_pickup_script.gd" id="1_6m1m0"]
+[ext_resource type="Script" uid="uid://bi63nyuscmtcu" path="res://Scripts/interactables/Interactable.gd" id="1_6m1m0"]
 [ext_resource type="Texture2D" uid="uid://dvjcjy2tdkme8" path="res://particlePack/PNG (Transparent)/flame_02.png" id="2_64xhp"]
+[ext_resource type="PackedScene" uid="uid://dssoxo8ue5gtn" path="res://Scenes/guns/fn_fal.tscn" id="2_80pas"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cs2e6"]
 size = Vector3(0.3, 0.3, 0.3)
@@ -28,11 +29,12 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_xhph5"]
 material = SubResource("StandardMaterial3D_6h10g")
 
-[node name="boxPickup" type="RigidBody3D" unique_id=2035561427]
+[node name="Interactable" type="RigidBody3D" unique_id=2035561427]
 gravity_scale = 0.5
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_6m1m0")
+gunScene = ExtResource("2_80pas")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1520452530]
 shape = SubResource("BoxShape3D_cs2e6")

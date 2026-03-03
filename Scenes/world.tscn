@@ -4,7 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://bsvf3sjsmi6d7" path="res://Scenes/player.tscn" id="1_a02cp"]
 [ext_resource type="PackedScene" uid="uid://cx6oke5efwurt" path="res://Scenes/testing_area_model.tscn" id="3_5a7ea"]
 [ext_resource type="PackedScene" uid="uid://n7tubvnb8cwe" path="res://Scenes/door.tscn" id="4_8j60k"]
-[ext_resource type="PackedScene" uid="uid://bqo4a4j00uqm2" path="res://Scenes/box_pickup.tscn" id="5_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://bqo4a4j00uqm2" path="res://Scenes/Interactable.tscn" id="5_fo5ed"]
+[ext_resource type="Script" uid="uid://bi63nyuscmtcu" path="res://Scripts/interactables/Interactable.gd" id="6_k7acu"]
+[ext_resource type="PackedScene" uid="uid://dssoxo8ue5gtn" path="res://Scenes/guns/fn_fal.tscn" id="7_5v1tr"]
+[ext_resource type="Texture2D" uid="uid://dvjcjy2tdkme8" path="res://particlePack/PNG (Transparent)/flame_02.png" id="8_0fj1v"]
+[ext_resource type="PackedScene" uid="uid://do45g6f1npwm3" path="res://Blender/Fn Fal.blend" id="9_5v1tr"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5a7ea"]
 panorama = ExtResource("1_5a7ea")
@@ -19,6 +23,31 @@ background_energy_multiplier = 0.8
 sky = SubResource("Sky_go701")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cs2e6"]
+size = Vector3(0.3, 0.3, 2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6m1m0"]
+size = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yck71"]
+spread = 180.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6h10g"]
+transparency = 1
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(4.415934, 2.1557462, 0, 1)
+albedo_texture = ExtResource("8_0fj1v")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_xhph5"]
+material = SubResource("StandardMaterial3D_6h10g")
 
 [node name="World" type="Node" unique_id=276789030]
 
@@ -43,27 +72,47 @@ moveSpeed = 0.2
 
 [node name="boxPickup" parent="3D" unique_id=2035561427 instance=ExtResource("5_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.5, 2)
-isHeld = null
 
 [node name="boxPickup2" parent="3D" unique_id=221109558 instance=ExtResource("5_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
-isHeld = null
 
 [node name="boxPickup3" parent="3D" unique_id=226471039 instance=ExtResource("5_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.5, 2)
-isHeld = null
 
 [node name="boxPickup4" parent="3D" unique_id=1424760301 instance=ExtResource("5_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75, 1.5, 2)
-isHeld = null
 
 [node name="boxPickup5" parent="3D" unique_id=1520458602 instance=ExtResource("5_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 1.5, 2)
-isHeld = null
 
 [node name="boxPickup6" parent="3D" unique_id=1816048681 instance=ExtResource("5_fo5ed")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 2)
-isHeld = null
+
+[node name="boxPickup7" type="RigidBody3D" parent="3D" unique_id=1924219669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.543678, 0.80722976, -0.8564496)
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("6_k7acu")
+isPickup = true
+gunScene = ExtResource("7_5v1tr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3D/boxPickup7" unique_id=1520452530]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.14999998)
+shape = SubResource("BoxShape3D_cs2e6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="3D/boxPickup7" unique_id=1145260348]
+visible = false
+mesh = SubResource("BoxMesh_6m1m0")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="3D/boxPickup7" unique_id=492560927]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_yck71")
+draw_pass_1 = SubResource("QuadMesh_xhph5")
+
+[node name="Fn Fal" parent="3D/boxPickup7" unique_id=62793824 instance=ExtResource("9_5v1tr")]
 
 [node name="UI" type="Control" parent="." unique_id=1683735307]
 layout_mode = 3
@@ -128,5 +177,23 @@ theme_override_font_sizes/normal_font_size = 42
 text = "G - Grenade"
 fit_content = true
 horizontal_alignment = 1
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1186311252]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 42
+text = "4 - Grenade Type"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel8" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1960522686]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 42
+text = "1 2 3 - Select Weapon"
+fit_content = true
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="3D/boxPickup7" to="3D/boxPickup7" method="_on_body_entered"]
 
 [editable path="3D/TestingAreaModel"]

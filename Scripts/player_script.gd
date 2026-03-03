@@ -45,8 +45,13 @@ var mouse_input : Vector2
 
 @export var aiming : bool = false
 
+
+signal pickup(type, data)
+
+
 func _ready() -> void:
 	assignPlayerInfo()
+	connect("pickup", pickupFunc)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -72,10 +77,12 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("lmb"):
-		gun_holder.get_child(0).canShoot = true
+		if gun_holder.get_child_count() > 0:
+			gun_holder.get_child(0).canShoot = true
 
 	elif !Input.is_action_pressed("lmb"):
-		gun_holder.get_child(0).canShoot = false
+		if gun_holder.get_child_count() > 0:
+			gun_holder.get_child(0).canShoot = false
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion: #camera movement
@@ -111,6 +118,22 @@ func _input(event: InputEvent) -> void:
 		if gun_holder.get_child_count() > 0:
 			gun_holder.get_child(0).emit_signal("unADS")
 			aiming = false
+	
+	if event.is_action_pressed("1"):
+		changeWeapon(0)
+	if event.is_action_pressed("2"):
+		changeWeapon(1)
+	if event.is_action_pressed("3"):
+		changeWeapon(2)
+	
+	if event.is_action_pressed("4"):
+		if selectedGrenade == grenadeTypes:
+			selectedGrenade = 0
+		else:
+			selectedGrenade += 1
+	
+	if event.is_action_pressed("g"):
+		throwGrenade()
 
 func assignPlayerInfo(): #Crouching is handled by an animation so this is here to edit the animation with picked values for height etc
 	player_collision.shape.height = standingHeight
@@ -158,7 +181,42 @@ func weapon_sway(delta): #Weapon moving when mouse moves
 #			gun_holder.position.y = lerp(gun_holder.position.y, def_weapon_holder_pos.y, 10 * delta)
 #			gun_holder.position.x = lerp(gun_holder.position.x, def_weapon_holder_pos.x, 10 * delta)
 
+#@export var gunScenes : Array[PackedScene]
+@export var heldGuns : Array[PackedScene]
 
+func changeWeapon(picked_weapon : int): #0 = 1st weapon
+	if gun_holder.get_child_count() > 0:
+		gun_holder.get_child(0).queue_free()
+	
+	if !(len(heldGuns) == 0 and picked_weapon == 0) and (len(heldGuns) >= picked_weapon):
+		gun_holder.add_child(heldGuns[picked_weapon].instantiate())
+
+@export_enum("Frag", "Flashbang") var grenadeTypes : int 
+@export var grenadeCounts : Array[int] = [5,5]
+@export var selectedGrenade : int = 0
+
+@onready var interactable : PackedScene = load("res://Scenes/Interactable.tscn")
+
+@onready var world: Node = get_tree().get_root().get_node("World")
+
+func throwGrenade():
+	if grenadeCounts[selectedGrenade] > 0:
+		grenadeCounts[selectedGrenade] -= 1
+		var grenade : Interactable_Class = interactable.instantiate()
+		grenade.throwEffect = 0
+		grenade.isThrown = true
+		grenade.isHeld = false
+		grenade.position = held_object_position.global_position
+		world.add_child(grenade)
+		grenade.apply_central_impulse(-player_cam.global_transform.basis.z * throwStrength)
+		
+		
+	else:
+		pass
+
+func pickupFunc(type : int, data):
+	print("Type : ",type, " Data : ",data)
+	heldGuns.append(data)
 
 
 

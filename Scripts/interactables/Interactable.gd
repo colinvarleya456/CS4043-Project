@@ -1,4 +1,5 @@
-extends RigidBody3D
+class_name Interactable_Class extends RigidBody3D
+
 
 signal interact(player)
 
@@ -11,12 +12,29 @@ func _ready() -> void:
 func interactFunc(player):
 	print("interact called : ", player)
 	playerNode = player
-	isHeld = !isHeld
-	isThrown = false
-	
+	if !isPickup:
+		isHeld = !isHeld
+		isThrown = false
+	else:
+		match pickupType:
+			0:
+				player.emit_signal("pickup",0,gunScene)
+			1:
+				player.emit_signal("pickup",1,grenadeType)
+			2:
+				player.emit_signal("pickup",2,null)
+		queue_free()
 
-@export var isHeld : bool = false
+@export_category("Pickup")
+@export var isPickup : bool = false
+@export_enum("Gun", "Grenade", "Silencer") var pickupType : int = 0
+@export var gunScene : PackedScene
+@export_enum("Frag","Flashbang") var grenadeType : int = 0
+
+@export_category("Throwable")
 @export var isThrown : bool = false
+@export var isHeld : bool = false
+
 
 func _physics_process(delta: float) -> void:
 	if isHeld:
@@ -30,7 +48,7 @@ func _input(event: InputEvent) -> void:
 			apply_central_impulse(-playerNode.player_cam.global_transform.basis.z * playerNode.throwStrength)
 
 
-@export_enum("Grenade", "Flashbang", "Water", "Oil", "Glass Shatter") var throwEffect = 0
+@export_enum("Frag", "Flashbang", "Water", "Oil", "Glass Shatter") var throwEffect = 0
 
 @export var grenadeFuze : float = 1
 @onready var gpu_particles_3d: GPUParticles3D = $GPUParticles3D

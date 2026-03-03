@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c7oqgygrjccrb"]
+
+[ext_resource type="Script" uid="uid://dgeo7x3ng2hkh" path="res://Scripts/gun_sfx.gd" id="1_pgdh4"]
+
+[node name="gunSFX" type="AudioStreamPlayer3D" unique_id=1504586851]
+script = ExtResource("1_pgdh4")

@@ -2,6 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://do45g6f1npwm3" path="res://Blender/Fn Fal.blend" id="1_vcjcl"]
 [ext_resource type="Script" uid="uid://do7uh35bc71du" path="res://Scripts/gun_script.gd" id="2_cgbnk"]
+[ext_resource type="AudioStream" uid="uid://bywsuno1jknjg" path="res://Snake's Authentic Gun Sounds/Full Sound/5.56/WAV/556 Single WAV.wav" id="3_2leic"]
+[ext_resource type="AudioStream" uid="uid://bcqnbfdw2x3g1" path="res://Snake's Authentic Gun Sounds/Full Sound/7.62x39/WAV/762x39 Single WAV.wav" id="4_l6jrp"]
+[ext_resource type="AudioStream" uid="uid://c1y2p3pe0r18u" path="res://Snake's Authentic Gun Sounds/Full Sound/7.62x54R/WAV/762x54r Single WAV.wav" id="5_mqyds"]
 
 [sub_resource type="Animation" id="Animation_mg0rm"]
 length = 0.001
@@ -53,19 +56,20 @@ trailColour = Color(0.7058824, 0.35686275, 0.7058824, 1)
 timeToDespawn = 3.0
 vRecoil = 0.1
 hRecoil = 0.1
-gunSound = 1
-
-[node name="Skeleton3D" parent="Armature" parent_id_path=PackedInt32Array(1291321878) index="0" unique_id=572781784]
-bones/1/position = Vector3(0.11998208, 0.030131474, 2.9310383e-08)
-bones/2/rotation = Quaternion(3.552714e-15, -1.1920928e-07, 4.235165e-22, 1)
+gunSFX = Array[AudioStreamWAV]([ExtResource("3_2leic"), ExtResource("4_l6jrp"), ExtResource("5_mqyds")])
+silencedGunSFX = Array[AudioStreamWAV]([ExtResource("4_l6jrp")])
+silenced = true
 
 [node name="end_of_barrel" type="Node3D" parent="Armature/Skeleton3D/a" parent_id_path=PackedInt32Array(1946752139) index="0" unique_id=509464055]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014427567, -1.0697801)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014427567, -1.0498496)
 
 [node name="end_of_barrel_look_at" type="Node3D" parent="Armature/Skeleton3D/a" parent_id_path=PackedInt32Array(1946752139) index="1" unique_id=809408323]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014427567, -2.06978)
 
 [node name="gun_audio" type="AudioStreamPlayer3D" parent="." index="3" unique_id=1379885928]
+max_polyphony = 16
 
 [node name="ads" type="AnimationPlayer" parent="." index="4" unique_id=431378872]
 libraries/ = SubResource("AnimationLibrary_mg0rm")
+
+[node name="sfx" type="Node3D" parent="." index="5" unique_id=1146841355]
