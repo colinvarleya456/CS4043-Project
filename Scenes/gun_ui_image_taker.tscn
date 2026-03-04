@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://1ei30plq3o6e"]
+
+[ext_resource type="Script" uid="uid://uhsg7mc5jfxl" path="res://Scripts/gun_ui_image_taker_script.gd" id="1_is84r"]
+[ext_resource type="PackedScene" uid="uid://do45g6f1npwm3" path="res://Blender/Fn Fal.blend" id="1_kjvsm"]
+
+[sub_resource type="Environment" id="Environment_is84r"]
+background_mode = 1
+background_color = Color(0, 0, 0, 0)
+
+[sub_resource type="World3D" id="World3D_m8r7f"]
+environment = SubResource("Environment_is84r")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_q8t7u"]
+viewport_path = NodePath("SubViewport")
+
+[node name="GunUIImageTaker" type="Node3D" unique_id=678968493]
+script = ExtResource("1_is84r")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1023923558]
+own_world_3d = true
+world_3d = SubResource("World3D_m8r7f")
+transparent_bg = true
+size = Vector2i(300, 300)
+size_2d_override_stretch = true
+
+[node name="GunHolder" type="Node3D" parent="SubViewport" unique_id=279954253]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -0.48806196)
+
+[node name="Fn Fal" parent="SubViewport/GunHolder" unique_id=62793824 instance=ExtResource("1_kjvsm")]
+
+[node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=792444931]
+fov = 132.4
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=763784311]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -3)
+billboard = 1
+texture = SubResource("ViewportTexture_q8t7u")

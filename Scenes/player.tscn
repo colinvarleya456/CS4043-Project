@@ -113,6 +113,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 [node name="gunHolder" type="Node3D" parent="Camera3D" unique_id=538680957]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.187, -0.13300002, -0.561)
 
+[node name="stowedWeapons" type="Node3D" parent="Camera3D" unique_id=1561531618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.187, -0.13300002, -0.561)
+visible = false
+
 [node name="playerCollision" type="CollisionShape3D" parent="." unique_id=1393535297]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_f60y1")

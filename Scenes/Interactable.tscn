@@ -35,6 +35,7 @@ contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("1_6m1m0")
 gunScene = ExtResource("2_80pas")
+gunName = "Glock"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1520452530]
 shape = SubResource("BoxShape3D_cs2e6")

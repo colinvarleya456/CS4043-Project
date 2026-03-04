@@ -18,17 +18,18 @@ func interactFunc(player):
 	else:
 		match pickupType:
 			0:
-				player.emit_signal("pickup",0,gunScene)
+				player.emit_signal("pickup",0,gunScene,gunName)
 			1:
-				player.emit_signal("pickup",1,grenadeType)
+				player.emit_signal("pickup",1,grenadeType,null)
 			2:
-				player.emit_signal("pickup",2,null)
+				player.emit_signal("pickup",2,null,null)
 		queue_free()
 
 @export_category("Pickup")
 @export var isPickup : bool = false
 @export_enum("Gun", "Grenade", "Silencer") var pickupType : int = 0
 @export var gunScene : PackedScene
+@export var gunName : String
 @export_enum("Frag","Flashbang") var grenadeType : int = 0
 
 @export_category("Throwable")

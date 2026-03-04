@@ -1,4 +1,4 @@
-extends CharacterBody3D
+class_name player_class extends CharacterBody3D
 
 
 @export var player_cam : Camera3D
@@ -46,7 +46,7 @@ var mouse_input : Vector2
 @export var aiming : bool = false
 
 
-signal pickup(type, data)
+signal pickup(type, data, gunName)
 
 
 func _ready() -> void:
@@ -120,11 +120,14 @@ func _input(event: InputEvent) -> void:
 			aiming = false
 	
 	if event.is_action_pressed("1"):
-		changeWeapon(0)
+		changeWeapon(0, null, null)
+		selectedWeapon = 0
 	if event.is_action_pressed("2"):
-		changeWeapon(1)
+		changeWeapon(1, null, null)
+		selectedWeapon = 1
 	if event.is_action_pressed("3"):
-		changeWeapon(2)
+		changeWeapon(2, null, null)
+		selectedWeapon = 2
 	
 	if event.is_action_pressed("4"):
 		if selectedGrenade == grenadeTypes:
@@ -183,13 +186,70 @@ func weapon_sway(delta): #Weapon moving when mouse moves
 
 #@export var gunScenes : Array[PackedScene]
 @export var heldGuns : Array[PackedScene]
+@export var heldGunsNames : Array[String]
+@export var selectedWeapon : int = 0
 
-func changeWeapon(picked_weapon : int): #0 = 1st weapon
-	if gun_holder.get_child_count() > 0:
-		gun_holder.get_child(0).queue_free()
+
+@onready var stowed_weapons: Node3D = $Camera3D/stowedWeapons
+
+
+func changeWeapon(picked_weapon : int, weapon_scene : PackedScene, gunName): #0 = 1st weapon
 	
-	if !(len(heldGuns) == 0 and picked_weapon == 0) and (len(heldGuns) >= picked_weapon):
-		gun_holder.add_child(heldGuns[picked_weapon].instantiate())
+	if gun_holder.get_child_count() > 0:
+		if gun_holder.get_child(0).heldPosition != picked_weapon:
+			gun_holder.get_child(0).reparent(stowed_weapons)
+	
+	
+	for child in stowed_weapons.get_children():
+		if child.heldPosition == picked_weapon:
+			child.reparent(gun_holder)
+			child.rotation = Vector3.ZERO
+			return
+	
+	
+	if weapon_scene:
+
+		var takenPositions : Array[int]
+
+		for i in gun_holder.get_children():
+			takenPositions.append(i.heldPosition)
+		for i in stowed_weapons.get_children():
+			takenPositions.append(i.heldPosition)
+		
+		var pos : int = 0
+		
+		for i in takenPositions:
+			if pos == i:
+				pos += 1
+			else:
+				break
+		
+		match pos:
+			0:
+				playerUI.gun1Name = gunName
+				playerUI.gun1Texture.texture = gun_ui_image_taker.takeImage(load("res://Blender/Fn Fal.blend"))
+			1:
+				playerUI.gun2Name = gunName
+				playerUI.gun2Texture.texture = gun_ui_image_taker.takeImage(load("res://Blender/Fn Fal.blend"))
+			2:
+				playerUI.gun3Name = gunName
+				playerUI.gun3Texture.texture = gun_ui_image_taker.takeImage(load("res://Blender/Fn Fal.blend"))
+		
+		
+		
+		var t = weapon_scene.instantiate()
+		t.heldPosition = pos
+
+		if gun_holder.get_child_count() > 0:
+			gun_holder.get_child(0).reparent(stowed_weapons)
+		gun_holder.add_child(t)
+		t.gunName = gunName
+		t.rotation = Vector3.ZERO
+	
+	
+	
+	#gun_holder.add_child(heldGuns[picked_weapon].instantiate())
+	#gun_holder.get_child(0).heldPosition = picked_weapon
 
 @export_enum("Frag", "Flashbang") var grenadeTypes : int 
 @export var grenadeCounts : Array[int] = [5,5]
@@ -214,17 +274,16 @@ func throwGrenade():
 	else:
 		pass
 
-func pickupFunc(type : int, data):
-	print("Type : ",type, " Data : ",data)
-	heldGuns.append(data)
+@onready var playerUI : Control = $"../../UI/Player"
+@onready var gun_ui_image_taker: Node3D = $"../GunUIImageTaker"
 
-
-
-
-
-
-
-
-
+func pickupFunc(type : int, data, gunName : String):
+	print("Type : ",type, " Data : ",data, " GUN NAME ",gunName)
+	changeWeapon(0, data, gunName)
+	
+	
+	
+	
+	
 
 pass

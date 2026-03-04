@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dssoxo8ue5gtn" path="res://Scenes/guns/fn_fal.tscn" id="7_5v1tr"]
 [ext_resource type="Texture2D" uid="uid://dvjcjy2tdkme8" path="res://particlePack/PNG (Transparent)/flame_02.png" id="8_0fj1v"]
 [ext_resource type="PackedScene" uid="uid://do45g6f1npwm3" path="res://Blender/Fn Fal.blend" id="9_5v1tr"]
+[ext_resource type="PackedScene" uid="uid://1ei30plq3o6e" path="res://Scenes/gun_ui_image_taker.tscn" id="10_0fj1v"]
+[ext_resource type="Script" uid="uid://cmrq1fxi0xcel" path="res://Scripts/playerUIScript.gd" id="11_7yui6"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5a7ea"]
 panorama = ExtResource("1_5a7ea")
@@ -23,6 +25,9 @@ background_energy_multiplier = 0.8
 sky = SubResource("Sky_go701")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ikia7"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cs2e6"]
 size = Vector3(0.3, 0.3, 2)
@@ -63,6 +68,12 @@ environment = SubResource("Environment_5a7ea")
 [node name="Player" parent="3D" unique_id=1623261914 instance=ExtResource("1_a02cp")]
 camMinAngle = -90.0
 
+[node name="GunUIImageTaker" parent="3D" unique_id=678968493 instance=ExtResource("10_0fj1v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+
+[node name="Sprite3D" parent="3D/GunUIImageTaker" index="1" unique_id=763784311]
+texture = SubResource("ViewportTexture_ikia7")
+
 [node name="TestingAreaModel" parent="3D" unique_id=311291670 instance=ExtResource("3_5a7ea")]
 
 [node name="door" parent="3D" unique_id=1109938094 instance=ExtResource("4_8j60k")]
@@ -90,11 +101,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 2)
 
 [node name="boxPickup7" type="RigidBody3D" parent="3D" unique_id=1924219669]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.543678, 0.80722976, -0.8564496)
+gravity_scale = 0.0
 contact_monitor = true
 max_contacts_reported = 1
 script = ExtResource("6_k7acu")
 isPickup = true
 gunScene = ExtResource("7_5v1tr")
+gunName = "AK"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="3D/boxPickup7" unique_id=1520452530]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.14999998)
@@ -114,25 +127,57 @@ draw_pass_1 = SubResource("QuadMesh_xhph5")
 
 [node name="Fn Fal" parent="3D/boxPickup7" unique_id=62793824 instance=ExtResource("9_5v1tr")]
 
+[node name="boxPickup8" type="RigidBody3D" parent="3D" unique_id=1510855183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.543678, 0.80722976, -0.8564496)
+gravity_scale = 0.0
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("6_k7acu")
+isPickup = true
+gunScene = ExtResource("7_5v1tr")
+gunName = "Glockaroni"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3D/boxPickup8" unique_id=2024571879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.14999998)
+shape = SubResource("BoxShape3D_cs2e6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="3D/boxPickup8" unique_id=1565546048]
+visible = false
+mesh = SubResource("BoxMesh_6m1m0")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="3D/boxPickup8" unique_id=1365581844]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_yck71")
+draw_pass_1 = SubResource("QuadMesh_xhph5")
+
+[node name="Fn Fal" parent="3D/boxPickup8" unique_id=90580035 instance=ExtResource("9_5v1tr")]
+
 [node name="UI" type="Control" parent="." unique_id=1683735307]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="temp" type="Control" parent="UI" unique_id=1360065617]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/temp" unique_id=1665111119]
 layout_mode = 0
 offset_right = 883.0
 offset_bottom = 244.0
+mouse_filter = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=2120744802]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 42
 text = "F - Interact"
 fit_content = true
@@ -141,6 +186,7 @@ horizontal_alignment = 1
 [node name="RichTextLabel2" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=100802581]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 42
 text = "T - Throw"
 fit_content = true
@@ -149,6 +195,7 @@ horizontal_alignment = 1
 [node name="RichTextLabel3" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1163156890]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 42
 text = "Z/X - Hide/Un-Hide Mouse"
 fit_content = true
@@ -157,6 +204,7 @@ horizontal_alignment = 1
 [node name="RichTextLabel4" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1051867045]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 42
 text = "Left/Right Mouse button - Shoot/Aim"
 fit_content = true
@@ -165,6 +213,7 @@ horizontal_alignment = 1
 [node name="RichTextLabel5" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=2138303274]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 42
 text = "R - Reload"
 fit_content = true
@@ -173,6 +222,7 @@ horizontal_alignment = 1
 [node name="RichTextLabel6" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=2096573749]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 42
 text = "G - Grenade"
 fit_content = true
@@ -181,6 +231,7 @@ horizontal_alignment = 1
 [node name="RichTextLabel7" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1186311252]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 42
 text = "4 - Grenade Type"
 fit_content = true
@@ -189,11 +240,107 @@ horizontal_alignment = 1
 [node name="RichTextLabel8" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1960522686]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 42
 text = "1 2 3 - Select Weapon"
 fit_content = true
 horizontal_alignment = 1
 
-[connection signal="body_entered" from="3D/boxPickup7" to="3D/boxPickup7" method="_on_body_entered"]
+[node name="Player" type="Control" parent="UI" unique_id=1402122063 node_paths=PackedStringArray("gun1Text", "gun2Text", "gun3Text", "ammoText", "grenadeText", "gun1Texture", "gun2Texture", "gun3Texture")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_7yui6")
+gun1Text = NodePath("VBoxContainer/Gun1")
+gun2Text = NodePath("VBoxContainer/Gun2")
+gun3Text = NodePath("VBoxContainer/Gun 3")
+ammoText = NodePath("VBoxContainer/Ammo")
+grenadeText = NodePath("VBoxContainer/Grenade")
+gun1Texture = NodePath("VBoxContainer/Gun1Image")
+gun2Texture = NodePath("VBoxContainer/Gun3Image")
+gun3Texture = NodePath("VBoxContainer/Gun3Image2")
 
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Player" unique_id=1706187430]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -316.0
+offset_top = -540.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Gun1" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=356494070]
+layout_mode = 2
+mouse_filter = 2
+text = "Gun 1: 222"
+fit_content = true
+
+[node name="Gun1Image" type="TextureRect" parent="UI/Player/VBoxContainer" unique_id=1804400311]
+layout_mode = 2
+
+[node name="Gun2" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=955062284]
+layout_mode = 2
+mouse_filter = 2
+text = "Gun 2: "
+fit_content = true
+
+[node name="Gun3Image" type="TextureRect" parent="UI/Player/VBoxContainer" unique_id=1378111251]
+layout_mode = 2
+
+[node name="Gun 3" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=660937613]
+layout_mode = 2
+mouse_filter = 2
+text = "Gun 3: "
+fit_content = true
+
+[node name="Gun3Image2" type="TextureRect" parent="UI/Player/VBoxContainer" unique_id=978571063]
+layout_mode = 2
+
+[node name="Ammo" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=2131660564]
+layout_mode = 2
+mouse_filter = 2
+text = "Ammo: 24/30 - 300"
+fit_content = true
+
+[node name="Grenade" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=913134931]
+layout_mode = 2
+mouse_filter = 2
+text = "Grenade: Frag 5"
+fit_content = true
+
+[node name="Gun 6" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=605480249]
+layout_mode = 2
+mouse_filter = 2
+text = "Gun 1: "
+fit_content = true
+
+[node name="Gun 7" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=1964294948]
+layout_mode = 2
+mouse_filter = 2
+text = "Gun 1: "
+fit_content = true
+
+[node name="Gun 8" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=365328991]
+layout_mode = 2
+mouse_filter = 2
+text = "Gun 1: "
+fit_content = true
+
+[node name="Gun 9" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=210234816]
+layout_mode = 2
+mouse_filter = 2
+text = "Gun 1: "
+fit_content = true
+
+[connection signal="body_entered" from="3D/boxPickup7" to="3D/boxPickup7" method="_on_body_entered"]
+[connection signal="body_entered" from="3D/boxPickup8" to="3D/boxPickup8" method="_on_body_entered"]
+
+[editable path="3D/GunUIImageTaker"]
 [editable path="3D/TestingAreaModel"]

@@ -1,4 +1,7 @@
-extends Node3D
+class_name gun_class extends Node3D
+
+@export var gunName : String
+@export var heldPosition : int = 0
 
 @export var adsCam : Camera3D
 @export var adsNode : Node3D
