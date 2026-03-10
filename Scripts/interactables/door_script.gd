@@ -3,7 +3,7 @@ extends StaticBody3D
 signal interact(player)
 
 @export var isOpenInwards : bool = false
-@export_range(0,1,.1) var moveSpeed : float
+@export_range(0,1,.1) var moveSpeed : float = 0.1
 
 @export var startAngle : float
 @export var targetRotation : float

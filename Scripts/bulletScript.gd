@@ -1,8 +1,8 @@
 extends RigidBody3D
 
 @export var fireRate : float
-@export var damage : float
-@export var speed : float
+@export var bulletDamage : float
+@export var muzzleVelocity : float
 @export var trailColour : Color
 @export var timeToDespawn : float = (fireRate * 10) + 5
 
@@ -16,6 +16,7 @@ enum ammoTypes {NORMAL, EXPLOSIVE, HOLLOWPOINT}
 @onready var world : Node = get_tree().get_root().get_node("World")
 @onready var shape_cast_3d : RayCast3D = $RayCast3D
 
+
 func _ready() -> void:
 	despawn()
 	visible = true
@@ -28,18 +29,10 @@ func _ready() -> void:
 @onready var decal : PackedScene = preload("res://Scenes/bulletDecal.tscn")
 
 func _physics_process(delta: float) -> void:
-	
-	
 	if shape_cast_3d.is_colliding():
-
-		
-		
 		if shape_cast_3d.get_collider() != null:
-			#print("has collider")
 			if shape_cast_3d.get_collider().find_child("identifier"):
-				#print("has identifier")
-				shape_cast_3d.get_collider().find_child("identifier").emit_signal("hit", damage)
-				#print("has damaghe ",damage)
+				shape_cast_3d.get_collider().find_child("identifier").emit_signal("hit", bulletDamage)
 				queue_free()
 			
 			else:
@@ -50,7 +43,7 @@ func _physics_process(delta: float) -> void:
 				queue_free()
 			
 	else:
-		position += global_transform.basis * Vector3(0,0,-speed)
+		position += global_transform.basis * Vector3(0,0,-muzzleVelocity)
 
 func despawn():
 	await get_tree().create_timer(.02).timeout

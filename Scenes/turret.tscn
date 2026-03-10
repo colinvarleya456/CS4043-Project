@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://0364oory73cw"]
+
+[ext_resource type="PackedScene" uid="uid://os8k80xr0cq1" path="res://Imports/Turret/50cal Turret.glb" id="1_fcprl"]
+[ext_resource type="Script" uid="uid://52x4x20ep16f" path="res://Scripts/turret_script.gd" id="2_hskch"]
+
+[node name="50cal Turret" unique_id=1898085924 node_paths=PackedStringArray("endBarrelList", "turret", "barrel", "endOfBarrel", "endOfBarrelLookAt", "casingEject") instance=ExtResource("1_fcprl")]
+script = ExtResource("2_hskch")
+muzzleVelocity = 0.5
+clipSize = 100
+casingTimeToDespawn = 104.0
+minDist = 5.0
+isSalvo = true
+salvoWait = 0.4
+endBarrelList = [NodePath("main/turret/barrel/endOfBarrel")]
+turret = NodePath("main/turret")
+barrel = NodePath("main/turret/barrel")
+endOfBarrel = NodePath("main/turret/barrel/endOfBarrel")
+endOfBarrelLookAt = NodePath("main/turret/barrel/endOfBarrelLookAt")
+casingEject = NodePath("main/turret/barrel/Empty_001")
+
+[node name="visCast" type="RayCast3D" parent="." index="0" unique_id=1846125536]
+target_position = Vector3(0, 0, -10)
+
+[node name="main" parent="." index="2" unique_id=1064253384]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.008136695, -0.012965361)
+
+[node name="Empty_001" parent="main/turret/barrel" parent_id_path=PackedInt32Array(1492866503) index="3" unique_id=1592934649]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.120122924, 0.21024959, 0.15911861)

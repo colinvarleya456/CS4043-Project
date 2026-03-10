@@ -5,9 +5,39 @@ signal interact(player)
 
 func _ready() -> void:
 	connect("interact", interactFunc)
+	if isPickup:
+		match pickupType:
+			0:
+				label_3d.text = str(gunName)
+			1:
+				
+				match grenadeType:
+					0:
+						label_3d.text = "Frag"
+					1:
+						label_3d.text = "Flashbang"
+			2:
+				label_3d.text = "Silencer"
+			
+	else:
+		label_3d.text = ""
+		#match throwEffect:
+		#	0:
+		#		label_3d.text = "Frag"
+		#	1:
+		#		label_3d.text = "Flashbang"
+		#	2:
+		#		label_3d.text = "Water"
+		#	3:
+		#		label_3d.text = "Oil"
+		#	4:
+		#		label_3d.text = "Glass Shatter"
 
 
 @export var playerNode : CharacterBody3D
+
+@onready var label_3d: Label3D = $Label3D
+
 
 func interactFunc(player):
 	print("interact called : ", player)
@@ -20,9 +50,10 @@ func interactFunc(player):
 			0:
 				player.emit_signal("pickup",0,gunScene,gunName)
 			1:
-				player.emit_signal("pickup",1,grenadeType,null)
+				player.emit_signal("pickup",1,grenadeType,"")
 			2:
-				player.emit_signal("pickup",2,null,null)
+				player.emit_signal("pickup",2,null,"")
+			
 		queue_free()
 
 @export_category("Pickup")
@@ -55,6 +86,8 @@ func _input(event: InputEvent) -> void:
 @onready var gpu_particles_3d: GPUParticles3D = $GPUParticles3D
 @onready var world: Node = get_tree().get_root().get_node("World")
 
+@export var loudness : float = 15
+
 func _on_body_entered(body: Node) -> void:
 	if isThrown:
 		match throwEffect:
@@ -63,6 +96,7 @@ func _on_body_entered(body: Node) -> void:
 				print("grenade explosion")
 				gpu_particles_3d.reparent(world)
 				gpu_particles_3d.emitting = true
+				world.find_child("EventBus").emit_signal("addEvent",[1,global_position, loudness])
 				queue_free()
 			1:
 				pass

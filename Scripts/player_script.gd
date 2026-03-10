@@ -279,7 +279,21 @@ func throwGrenade():
 
 func pickupFunc(type : int, data, gunName : String):
 	print("Type : ",type, " Data : ",data, " GUN NAME ",gunName)
-	changeWeapon(0, data, gunName)
+	match type:
+		0: #Gun
+			changeWeapon(0, data, gunName)
+		1: #Grenade data-type
+			match data:
+				0:
+					grenadeCounts[0] += 1
+				1:
+					grenadeCounts[1] += 1
+		2: #Silencer
+			if gun_holder.get_child_count() > 0:
+				gun_holder.get_child(0).silenced = true
+				gun_holder.get_child(0).addSilencer()
+		
+	
 	
 	
 	

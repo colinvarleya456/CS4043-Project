@@ -19,8 +19,8 @@ enum weaponTypes {PISTOL, RIFLE, SMG, SNIPER, LMG}
 @export var reserveAmmo : int
 @export var automatic : bool
 @export var fireRate : float
-@export var damage : float
-@export var speed : float
+@export var bulletDamage : float
+@export var muzzleVelocity : float
 @export var trailColour : Color
 @export var timeToDespawn : float
 @export var vRecoil : float
@@ -64,7 +64,6 @@ func _ready():
 	updateAmmoUI()
 	if silenced:
 		addSilencer()
-		
 
 func _input(event):
 	if event.is_action_pressed("r"):
@@ -83,17 +82,35 @@ func start_shoot():
 func stop_shoot():
 	canShoot = false
 
+@export var casingEject : Node3D
+@export var doesEject : bool = true
+@export var casingTimeToDespawn : float = 20
+
 func fire() -> void:
 	if ammo >= 1 and canShoot == true and reloading == false:
+		world.find_child("EventBus").emit_signal("addEvent",[1,Vector3.ZERO, true])
+		
 		var bullet = load("res://Scenes/bullet.tscn")
 		var bulletInstance = bullet.instantiate()
-		world.add_child.call_deferred(bulletInstance)
 		bulletInstance.look_at_from_position(end_of_barrel.global_position,end_of_barrel_look_at.global_position)
 		bulletInstance.position = end_of_barrel.global_position
-		bulletInstance.speed = speed 
-		bulletInstance.trailColour = trailColour
-		bulletInstance.damage = damage
+		bulletInstance.muzzleVelocity = muzzleVelocity 
+		bulletInstance.bulletDamage = bulletDamage
 		bulletInstance.timeToDespawn = timeToDespawn
+		world.add_child.call_deferred(bulletInstance)
+		
+		if casingEject != null and doesEject == true: #spawn casings
+			var casingEjectins = load("res://Scenes/standard_bullet_casing.tscn")
+			casingEjectins = casingEjectins.instantiate()
+			casingEjectins.timeToDespawn = casingTimeToDespawn
+			world.add_child(casingEjectins)
+			casingEjectins.global_rotation = casingEject.global_rotation
+			casingEjectins.global_position = casingEject.global_position
+		
+		
+		
+		
+		
 		playFireSFX()
 		ammo -= 1
 		

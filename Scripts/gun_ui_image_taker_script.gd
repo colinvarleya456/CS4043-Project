@@ -1,4 +1,4 @@
-@tool
+#@tool
 extends Node3D
 
 
@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 
 @onready var gun_holder: Node3D = $SubViewport/GunHolder
 @onready var camera_3d: Camera3D = $SubViewport/Camera3D
-@export_tool_button("Hello", "Callable") var hello_action = takeImage
+#@export_tool_button("Hello", "Callable") var hello_action = takeImage
 
 @onready var sub_viewport: SubViewport = $SubViewport
 

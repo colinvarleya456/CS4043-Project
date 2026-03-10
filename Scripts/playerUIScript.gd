@@ -24,7 +24,10 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	var currentWeapon : gun_class = player.gun_holder.get_child(0)
+	var currentWeapon : gun_class
+	
+	if player.gun_holder.get_child_count() > 0:
+		currentWeapon = player.gun_holder.get_child(0)
 	
 	gun1Text.text = str("Gun 1: ", gun1Name)
 	gun2Text.text = str("Gun 2: ", gun2Name)
