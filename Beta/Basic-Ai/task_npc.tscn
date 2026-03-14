@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://djvwmuhsw4y5p"]
+
+[ext_resource type="Script" uid="uid://dr24ocpna03ek" path="res://Beta/Basic-Ai/task_npc.gd" id="1_s0w88"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d4m5l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s0w88"]
+albedo_color = Color(0, 0.5708523, 0.83851254, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_p3fvp"]
+material = SubResource("StandardMaterial3D_s0w88")
+
+[node name="Task NPC" type="CharacterBody3D" unique_id=824026055]
+script = ExtResource("1_s0w88")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1984509121]
+shape = SubResource("CapsuleShape3D_d4m5l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1057156544]
+mesh = SubResource("CapsuleMesh_p3fvp")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=780956865]
+target_desired_distance = 5.0
+avoidance_enabled = true
+radius = 1.0
+max_speed = 5.0
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationAgent3D" unique_id=248003289]
+radius = 1.0
