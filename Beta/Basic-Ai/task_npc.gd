@@ -12,9 +12,15 @@ var current_path: Vector3
 const SPEED = 5.0
 const THINK_TICK = 1
 
+signal hit(damage)
+signal eventHeard(type : int)
+
 func _ready() -> void:
+	connect("hit", hitFunc)#
+	connect("eventHeard", eventHeardFunc)
 	agent.target_position = tasks[current_task].position
 	agent.velocity_computed.connect(Callable(_on_velocity_computed))
+	
 
 func _physics_process(delta: float) -> void:
 	if NavigationServer3D.map_get_iteration_id(agent.get_navigation_map()) == 0:
@@ -38,3 +44,16 @@ func _physics_process(delta: float) -> void:
 func _on_velocity_computed(safe_velocity: Vector3):
 	velocity = safe_velocity
 	move_and_slide()
+
+func hitFunc(damage):
+	print(damage)
+	queue_free()
+
+
+#testing
+@onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
+const RED_MATERIAL = preload("uid://dc4qss36a8qse")
+
+func eventHeardFunc(type):
+	mesh_instance_3d.set_surface_override_material(0, RED_MATERIAL)
+	#queue_free()

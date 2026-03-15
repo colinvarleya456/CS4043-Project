@@ -106,6 +106,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 0)
 
 [node name="interactCast" type="RayCast3D" parent="Camera3D" unique_id=1738658246]
 target_position = Vector3(0, 0, -3)
+collision_mask = 16
 
 [node name="heldObjectPosition" type="Node3D" parent="Camera3D" unique_id=320950038]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)

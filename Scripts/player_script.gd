@@ -20,11 +20,13 @@ class_name player_class extends CharacterBody3D
 @export_category("Player")
 @export var standingHeight : float = 2
 @export var crouchHeight : float = 1
-@export var proneHeight : float = .5
-@export var crouchSpeed : float = .1
-@export var proneSpeed : float = 1
+#@export var proneHeight : float = .5
+@export var sprintSpeed : float = 7
+@export var crouchSpeed : float = 3
+#@export var proneSpeed : float = 1
 
-@export var movementSpeed = 5.0
+@export var startSpeed = 5.0
+@export var movementSpeed = 0
 @export var jumpVelocity = 4.5
 @export var isCrouch : bool = false
 
@@ -52,6 +54,7 @@ signal pickup(type, data, gunName)
 func _ready() -> void:
 	assignPlayerInfo()
 	connect("pickup", pickupFunc)
+	movementSpeed = startSpeed
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -83,6 +86,16 @@ func _process(delta: float) -> void:
 	elif !Input.is_action_pressed("lmb"):
 		if gun_holder.get_child_count() > 0:
 			gun_holder.get_child(0).canShoot = false
+	
+	if Input.is_action_pressed("shift") and !isCrouch:
+		movementSpeed = sprintSpeed
+	
+	elif Input.is_action_pressed("shift") and isCrouch:
+		movementSpeed = crouchSpeed
+	elif isCrouch:
+		movementSpeed = crouchSpeed
+	else:
+		movementSpeed = startSpeed
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion: #camera movement
@@ -106,6 +119,7 @@ func _input(event: InputEvent) -> void:
 				isCrouch = !isCrouch
 	
 	if Input.is_action_just_pressed("f"): #interact
+		print("0")
 		interactFunc()
 	
 	if event.is_action_pressed("rmb"): #aim in
@@ -147,11 +161,13 @@ func assignPlayerInfo(): #Crouching is handled by an animation so this is here t
 	animation_player.get_animation("crouch").track_set_key_value(1,0, Vector3(0,standingHeight * .875,0))
 	animation_player.get_animation("crouch").track_set_key_value(1,1, standingHeight)
 	
-	animation_player.speed_scale = 1 / crouchSpeed
+	animation_player.speed_scale = 8 #/ crouchSpeed
 
 func interactFunc():
+	print("1")
 	interact_cast.force_raycast_update()
 	if interact_cast.is_colliding():
+		print("2")
 		interact_cast.get_collider().emit_signal("interact", self)
 
 func cam_tilt(input_x, delta): #Cam leaning left/right when moving left/right

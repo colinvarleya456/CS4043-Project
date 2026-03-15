@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://wmoatk37jfc3"]
+
+[ext_resource type="PackedScene" uid="uid://myvuirm63twf" path="res://Blender/shop1.blend" id="1_xdctd"]
+[ext_resource type="PackedScene" uid="uid://bgh4sdlkohw3d" path="res://Scenes/door_1.tscn" id="2_73yb8"]
+[ext_resource type="PackedScene" uid="uid://bqo4a4j00uqm2" path="res://Scenes/Interactable.tscn" id="2_dvnch"]
+
+[node name="shop1" unique_id=1810446417 instance=ExtResource("1_xdctd")]
+
+[node name="Interactable" parent="body /Cube_003 " parent_id_path=PackedInt32Array(613312587) index="1" unique_id=2035561427 instance=ExtResource("2_dvnch")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8058466, -0.57102346)
+isPickup = true
+pickupType = 1
+gunName = "Frag"
+
+[node name="Cylinder" parent="body " parent_id_path=PackedInt32Array(1897558986) index="10" unique_id=529220744]
+visible = false
+
+[node name="door1" parent="body /Empty" parent_id_path=PackedInt32Array(1301285249) index="0" unique_id=102913577 instance=ExtResource("2_73yb8")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="door1" parent="body /Empty_001" parent_id_path=PackedInt32Array(1532352477) index="0" unique_id=622100263 instance=ExtResource("2_73yb8")]

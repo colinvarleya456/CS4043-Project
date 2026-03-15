@@ -93,6 +93,10 @@ material = SubResource("StandardMaterial3D_b15o6")
 
 [sub_resource type="Skin" id="Skin_ju0wb"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_odot3"]
+height = 0.4
+radius = 0.05
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_odot3"]
 emission_enabled = true
 emission = Color(1, 1, 0, 1)
@@ -104,8 +108,8 @@ radius = 0.015
 height = 0.2
 
 [node name="RigidBody3D" type="RigidBody3D" unique_id=1814034787]
-collision_layer = 3
-collision_mask = 3
+collision_layer = 0
+collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_fhthq")
 
@@ -127,6 +131,7 @@ _defaults_have_been_set = true
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1219596221]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+visible = false
 emitting = false
 amount = 16
 one_shot = true
@@ -136,8 +141,12 @@ process_material = SubResource("ParticleProcessMaterial_dx3n3")
 draw_pass_1 = SubResource("QuadMesh_tm1o8")
 draw_skin = SubResource("Skin_ju0wb")
 
-[node name="RayCast3D" type="RayCast3D" parent="." unique_id=1094146109]
-target_position = Vector3(0, 0, -3)
+[node name="shapeCast" type="ShapeCast3D" parent="." unique_id=330328959]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_odot3")
+target_position = Vector3(0, 0, 0)
+collision_mask = 9
+debug_shape_custom_color = Color(1, 0, 1, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1102329349]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)

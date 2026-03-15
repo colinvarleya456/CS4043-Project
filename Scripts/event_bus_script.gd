@@ -25,10 +25,13 @@ func _ready() -> void:
 	TEMPupdateUI()
 
 @export var dictPosition : int = 0
+@onready var npc_manager: NPCManager = $"../3D/Whitebox/NPC Manager"
 
 func addEventFunc(data):
 	events.get_or_add(dictPosition, data)
 	dictPosition += 1
+	
+	notifyNPCS(data)
 
 func TEMPupdateUI():
 	for child in v_box_container.get_children():
@@ -44,8 +47,28 @@ func TEMPupdateUI():
 	await get_tree().create_timer(.2).timeout
 	TEMPupdateUI()
 
+func notifyNPCS(data): # type, pos, loudness
+	for child in npc_manager.get_children():
+		var eventType : int = data[0]
+		var eventPos : Vector3 = data[1]
+		var eventLoudness : float = data[2]
+		
+		if eventPos.distance_to(child.global_position) < eventLoudness:
+			child.emit_signal("eventHeard",eventType)
 
-# --- ----
-#I was thinking of having all NPCS as a child of a node3d called npcHolder or something, when addEventFunc is called,
-#it loops over every child of npcHolder and if the distance from the event global position to the npc global position is <= loudness then
-#tell the npc there was an event at the position
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pass

@@ -85,10 +85,11 @@ func stop_shoot():
 @export var casingEject : Node3D
 @export var doesEject : bool = true
 @export var casingTimeToDespawn : float = 20
+@export var loudness : float = 15
 
 func fire() -> void:
 	if ammo >= 1 and canShoot == true and reloading == false:
-		world.find_child("EventBus").emit_signal("addEvent",[1,Vector3.ZERO, true])
+		world.find_child("EventBus").emit_signal("addEvent",[0,global_position, loudness])
 		
 		var bullet = load("res://Scenes/bullet.tscn")
 		var bulletInstance = bullet.instantiate()
@@ -155,7 +156,7 @@ func recoil():
 
 func _physics_process(delta: float) -> void:
 	if recoilAccumulation > 0.1:
-		print(">0")
+		#print(">0")
 		get_parent().get_parent().rotation_degrees.x = lerpf(get_parent().get_parent().rotation_degrees.x, 0, recoilCalming)
 		recoilAccumulation = lerpf(recoilAccumulation, 0, recoilCalming)
 

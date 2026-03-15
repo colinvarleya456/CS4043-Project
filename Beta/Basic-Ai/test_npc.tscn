@@ -7,6 +7,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_p3fvp"]
 
 [node name="Test NPC" type="CharacterBody3D" unique_id=824026055]
+collision_layer = 8
 script = ExtResource("1_1o6k0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1984509121]

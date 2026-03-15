@@ -11,9 +11,7 @@ signal interact(player)
 
 func _ready() -> void:
 	connect("interact", interactFunc)
-	startAngle = rotation_degrees.y
-	
-	
+	startAngle = hingeNode.rotation_degrees.y
 	targetRotation = startAngle
 
 func interactFunc(player):
@@ -30,5 +28,8 @@ func interactFunc(player):
 		elif targetRotation == startAngle:
 			targetRotation = startAngle - 90
 
+@export var hingeNode : Node3D #because of importing being weird just assign the node that has the origin set to where the door rotates to this
+
+
 func _physics_process(delta: float) -> void:
-	rotation_degrees.y = lerp(rotation_degrees.y, targetRotation, moveSpeed)
+	hingeNode.rotation_degrees.y = lerp(hingeNode.rotation_degrees.y, targetRotation, moveSpeed)

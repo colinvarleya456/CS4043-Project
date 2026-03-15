@@ -25,5 +25,6 @@ func _process(delta: float) -> void:
 			new_npc.position = entrance.position
 			new_npc.tasks = [stores.pick_random(), exit]
 			new_npc.manager = self
+			new_npc.set_collision_layer_value(4, true)
 			add_child(new_npc)
 			npc_array.append(new_npc)
