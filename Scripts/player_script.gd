@@ -1,5 +1,6 @@
 class_name player_class extends CharacterBody3D
 
+@export var active := false
 
 @export var player_cam : Camera3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -57,100 +58,104 @@ func _ready() -> void:
 	movementSpeed = startSpeed
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = jumpVelocity
-
-	var input_dir := Input.get_vector("a", "d", "w", "s")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * movementSpeed
-		velocity.z = direction.z * movementSpeed
-	else:
-		velocity.x = move_toward(velocity.x, 0, movementSpeed)
-		velocity.z = move_toward(velocity.z, 0, movementSpeed)
+	if active:
+		if not is_on_floor():
+			velocity += get_gravity() * delta
 	
-	cam_tilt(input_dir.x, delta)
-	weapon_tilt(input_dir.x, delta)
-	weapon_sway(delta)
-	#weapon_bob(velocity.length(),delta)
-	move_and_slide()
+		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+			velocity.y = jumpVelocity
+	
+		var input_dir := Input.get_vector("a", "d", "w", "s")
+		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			velocity.x = direction.x * movementSpeed
+			velocity.z = direction.z * movementSpeed
+		else:
+			velocity.x = move_toward(velocity.x, 0, movementSpeed)
+			velocity.z = move_toward(velocity.z, 0, movementSpeed)
+		
+		cam_tilt(input_dir.x, delta)
+		weapon_tilt(input_dir.x, delta)
+		weapon_sway(delta)
+		#weapon_bob(velocity.length(),delta)
+		move_and_slide()
 
 func _process(delta: float) -> void:
-	if Input.is_action_pressed("lmb"):
-		if gun_holder.get_child_count() > 0:
-			gun_holder.get_child(0).canShoot = true
-
-	elif !Input.is_action_pressed("lmb"):
-		if gun_holder.get_child_count() > 0:
-			gun_holder.get_child(0).canShoot = false
+	if active:
+		if Input.is_action_pressed("lmb"):
+			if gun_holder.get_child_count() > 0:
+				gun_holder.get_child(0).canShoot = true
 	
-	if Input.is_action_pressed("shift") and !isCrouch:
-		movementSpeed = sprintSpeed
-	
-	elif Input.is_action_pressed("shift") and isCrouch:
-		movementSpeed = crouchSpeed
-	elif isCrouch:
-		movementSpeed = crouchSpeed
-	else:
-		movementSpeed = startSpeed
+		elif !Input.is_action_pressed("lmb"):
+			if gun_holder.get_child_count() > 0:
+				gun_holder.get_child(0).canShoot = false
+		
+		if Input.is_action_pressed("shift") and !isCrouch:
+			movementSpeed = sprintSpeed
+		
+		elif Input.is_action_pressed("shift") and isCrouch:
+			movementSpeed = crouchSpeed
+		elif isCrouch:
+			movementSpeed = crouchSpeed
+		else:
+			movementSpeed = startSpeed
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion: #camera movement
-		rotate_y(deg_to_rad(-event.relative.x) * camSensHorizontal)
-		player_cam.rotate_x(deg_to_rad(-event.relative.y) * camSensVertical)
-		player_cam.rotation.x = clamp(player_cam.rotation.x, deg_to_rad(camMinAngle), deg_to_rad(camMaxAngle))
-		mouse_input = event.relative
-
 	if Input.is_action_just_pressed("z"): #show mouse
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if Input.is_action_just_pressed("x"): #hide mouse
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	if active:
+		if event is InputEventMouseMotion: #camera movement
+			rotate_y(deg_to_rad(-event.relative.x) * camSensHorizontal)
+			player_cam.rotate_x(deg_to_rad(-event.relative.y) * camSensVertical)
+			player_cam.rotation.x = clamp(player_cam.rotation.x, deg_to_rad(camMinAngle), deg_to_rad(camMaxAngle))
+			mouse_input = event.relative
 	
-	if Input.is_action_pressed("control"): #crouch
-		if !isCrouch:
-			animation_player.play("crouch")
-			isCrouch = !isCrouch
-		else:
-			if crouch_cast.is_colliding() == false:
-				animation_player.play_backwards("crouch")
-				isCrouch = !isCrouch
-	
-	if Input.is_action_just_pressed("f"): #interact
-		print("0")
-		interactFunc()
-	
-	if event.is_action_pressed("rmb"): #aim in
-		if gun_holder.get_child_count() > 0:
-			print("try fire")
-			gun_holder.get_child(0).emit_signal("ADS")
-			aiming = true
 
-	if event.is_action_released("rmb"): #aim out
-		if gun_holder.get_child_count() > 0:
-			gun_holder.get_child(0).emit_signal("unADS")
-			aiming = false
+		
+		if Input.is_action_pressed("control"): #crouch
+			if !isCrouch:
+				animation_player.play("crouch")
+				isCrouch = !isCrouch
+			else:
+				if crouch_cast.is_colliding() == false:
+					animation_player.play_backwards("crouch")
+					isCrouch = !isCrouch
+		
+		if Input.is_action_just_pressed("f"): #interact
+			print("0")
+			interactFunc()
+		
+		if event.is_action_pressed("rmb"): #aim in
+			if gun_holder.get_child_count() > 0:
+				print("try fire")
+				gun_holder.get_child(0).emit_signal("ADS")
+				aiming = true
 	
-	if event.is_action_pressed("1"):
-		changeWeapon(0, null, null)
-		selectedWeapon = 0
-	if event.is_action_pressed("2"):
-		changeWeapon(1, null, null)
-		selectedWeapon = 1
-	if event.is_action_pressed("3"):
-		changeWeapon(2, null, null)
-		selectedWeapon = 2
-	
-	if event.is_action_pressed("4"):
-		if selectedGrenade == grenadeTypes:
-			selectedGrenade = 0
-		else:
-			selectedGrenade += 1
-	
-	if event.is_action_pressed("g"):
-		throwGrenade()
+		if event.is_action_released("rmb"): #aim out
+			if gun_holder.get_child_count() > 0:
+				gun_holder.get_child(0).emit_signal("unADS")
+				aiming = false
+		
+		if event.is_action_pressed("1"):
+			changeWeapon(0, null, null)
+			selectedWeapon = 0
+		if event.is_action_pressed("2"):
+			changeWeapon(1, null, null)
+			selectedWeapon = 1
+		if event.is_action_pressed("3"):
+			changeWeapon(2, null, null)
+			selectedWeapon = 2
+		
+		if event.is_action_pressed("4"):
+			if selectedGrenade == grenadeTypes:
+				selectedGrenade = 0
+			else:
+				selectedGrenade += 1
+		
+		if event.is_action_pressed("g"):
+			throwGrenade()
 
 func assignPlayerInfo(): #Crouching is handled by an animation so this is here to edit the animation with picked values for height etc
 	player_collision.shape.height = standingHeight

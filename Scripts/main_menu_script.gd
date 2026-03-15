@@ -1,7 +1,7 @@
 extends Control
 
 @onready var settings: Control = $"../Settings"
-@export var activateOnStart : Array
+@export var activateOnStart : Array[Node3D]
 
 func _ready() -> void:
 	visible = true

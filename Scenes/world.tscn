@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://djsc2y66b7jpy" path="res://Themes/mainMenuTheme.tres" id="3_kn0ld"]
 [ext_resource type="PackedScene" uid="uid://beywvd6qtyhei" path="res://Beta/Basic-Ai/Whitebox.tscn" id="5_5ukr8"]
 [ext_resource type="PackedScene" uid="uid://bqo4a4j00uqm2" path="res://Scenes/Interactable.tscn" id="5_fo5ed"]
+[ext_resource type="PackedScene" uid="uid://boyaoofi4q8bu" path="res://Scenes/exit.tscn" id="6_0pcbe"]
 [ext_resource type="Script" uid="uid://b77s2hqkgbmng" path="res://Scripts/free_cam_script.gd" id="6_k7acu"]
 [ext_resource type="Script" uid="uid://dddab2rrqqfx2" path="res://Scripts/camera_testing_script.gd" id="7_o06y3"]
 [ext_resource type="PackedScene" uid="uid://wmoatk37jfc3" path="res://Scenes/shop_1.tscn" id="9_0fj1v"]
@@ -30,7 +31,7 @@ sky = SubResource("Sky_go701")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_ikia7"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_hgpy0"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ukr8"]
@@ -246,7 +247,7 @@ mouse_filter = 2
 text = "Gun 1: "
 fit_content = true
 
-[node name="MainMenu" type="Control" parent="." unique_id=1592940072]
+[node name="MainMenu" type="Control" parent="." unique_id=1592940072 node_paths=PackedStringArray("activateOnStart")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -255,6 +256,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_c5t2i")
+activateOnStart = [NodePath("../3D/Player")]
 
 [node name="TextureRect" type="ColorRect" parent="MainMenu" unique_id=1768776388]
 layout_mode = 1
@@ -360,6 +362,10 @@ text = "Close"
 [node name="gameManager" type="Node" parent="." unique_id=616561846]
 script = ExtResource("1_7yui6")
 
+[node name="exit" parent="gameManager" unique_id=852781648 instance=ExtResource("6_0pcbe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 107.2508, 0, -93.65435)
+active = true
+
 [node name="EventBus" type="Node" parent="." unique_id=2124413919]
 script = ExtResource("1_ikia7")
 
@@ -385,7 +391,7 @@ environment = SubResource("Environment_5a7ea")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 
 [node name="Sprite3D" parent="3D/GunUIImageTaker" index="1" unique_id=763784311]
-texture = SubResource("ViewportTexture_ikia7")
+texture = SubResource("ViewportTexture_hgpy0")
 
 [node name="Player" parent="3D" unique_id=1623261914 instance=ExtResource("1_a02cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.01386, 0, -92.29072)
