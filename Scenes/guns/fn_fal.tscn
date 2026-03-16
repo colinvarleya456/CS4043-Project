@@ -42,7 +42,7 @@ _data = {
 &"ads": SubResource("Animation_cgbnk")
 }
 
-[node name="Fn Fal" unique_id=62793824 node_paths=PackedStringArray("casingEject") instance=ExtResource("1_vcjcl")]
+[node name="Fn Fal" unique_id=1976406460 node_paths=PackedStringArray("casingEject") instance=ExtResource("1_vcjcl")]
 script = ExtResource("2_cgbnk")
 canShoot = false
 weaponName = "a"
@@ -59,13 +59,13 @@ gunSFX = Array[AudioStreamWAV]([ExtResource("3_2leic"), ExtResource("4_l6jrp"), 
 silencedGunSFX = Array[AudioStreamWAV]([ExtResource("4_l6jrp")])
 casingEject = NodePath("Armature/Skeleton3D/a/Node3D")
 
-[node name="end_of_barrel" type="Node3D" parent="Armature/Skeleton3D/a" parent_id_path=PackedInt32Array(1946752139) index="0" unique_id=509464055]
+[node name="end_of_barrel" type="Node3D" parent="Armature/Skeleton3D/a" parent_id_path=PackedInt32Array(1209687836) index="0" unique_id=509464055]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014427567, -1.0498496)
 
-[node name="end_of_barrel_look_at" type="Node3D" parent="Armature/Skeleton3D/a" parent_id_path=PackedInt32Array(1946752139) index="1" unique_id=809408323]
+[node name="end_of_barrel_look_at" type="Node3D" parent="Armature/Skeleton3D/a" parent_id_path=PackedInt32Array(1209687836) index="1" unique_id=809408323]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.014427567, -2.06978)
 
-[node name="Node3D" type="Node3D" parent="Armature/Skeleton3D/a" parent_id_path=PackedInt32Array(1946752139) index="2" unique_id=326777713]
+[node name="Node3D" type="Node3D" parent="Armature/Skeleton3D/a" parent_id_path=PackedInt32Array(1209687836) index="2" unique_id=326777713]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.061807074, 0.041583464, 0.197709)
 
 [node name="gun_audio" type="AudioStreamPlayer3D" parent="." index="3" unique_id=1379885928]

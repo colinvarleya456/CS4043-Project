@@ -25,7 +25,8 @@ func _ready() -> void:
 	TEMPupdateUI()
 
 @export var dictPosition : int = 0
-@onready var npc_manager: NPCManager = $"../3D/Whitebox/NPC Manager"
+
+@onready var npc_manager: NPCManager = $"../3D/Whitebox2/NPC Manager"
 
 func addEventFunc(data):
 	events.get_or_add(dictPosition, data)

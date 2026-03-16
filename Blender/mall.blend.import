@@ -37,7 +37,96 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:Empty": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_001": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_002": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_003": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_004": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_005": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_006": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_007": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_008": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_009": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_010": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_011": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_012": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_013": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_014": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_015": {
+"node/node_type": "Marker3D",
+"node/script": "Marker3D"
+},
+"PATH:Empty_016": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_017": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_018": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_019": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_020": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_021": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_022": {
+"node/node_type": "Marker3D"
+},
+"PATH:Empty_023": {
+"node/node_type": "Marker3D"
+},
+"PATH:enter1": {
+"node/node_type": "Marker3D"
+},
+"PATH:enter2": {
+"node/node_type": "Marker3D"
+},
+"PATH:exit1": {
+"node/node_type": "Marker3D"
+},
+"PATH:exit2": {
+"node/node_type": "Marker3D",
+"node/script": "Marker3D"
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

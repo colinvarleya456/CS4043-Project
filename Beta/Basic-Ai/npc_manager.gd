@@ -14,6 +14,8 @@ var npc_array: Array[TaskNPC] = []
 const SPAWN_TIMER_TICK = 0.5
 var spawn_timer = 0
 
+
+
 func _process(delta: float) -> void:
 	spawn_timer += delta
 	if (spawn_timer > SPAWN_TIMER_TICK):
