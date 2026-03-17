@@ -1,6 +1,7 @@
 class_name player_class extends CharacterBody3D
 
 @export var active := false
+@export var startPosition : Vector3
 
 @export var player_cam : Camera3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -56,6 +57,7 @@ func _ready() -> void:
 	assignPlayerInfo()
 	connect("pickup", pickupFunc)
 	movementSpeed = startSpeed
+	startPosition = global_position
 
 func _physics_process(delta: float) -> void:
 	if active:

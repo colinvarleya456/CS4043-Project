@@ -1,6 +1,5 @@
 [gd_scene format=3 uid="uid://bfp1mq1avkvuu"]
 
-[ext_resource type="Script" uid="uid://b6eyqurdv6e8a" path="res://Scripts/ui_script.gd" id="1_1cojt"]
 [ext_resource type="Texture2D" uid="uid://b6u1r1yu0h2t0" path="res://addons/AllSkyFree_Godot_itchio (1)/new folder/Cold Sunset Equirect.png" id="1_5a7ea"]
 [ext_resource type="Script" uid="uid://bben1lqb1x7w8" path="res://Scripts/game_manager_script.gd" id="1_7yui6"]
 [ext_resource type="PackedScene" uid="uid://bsvf3sjsmi6d7" path="res://Scenes/player.tscn" id="1_a02cp"]
@@ -20,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://bme81jst7f2qu" path="res://Scenes/mall.tscn" id="11_ikia7"]
 [ext_resource type="PackedScene" uid="uid://do45g6f1npwm3" path="res://Blender/Fn Fal.blend" id="16_hgpy0"]
 [ext_resource type="Script" uid="uid://hd8eyvj0s6d1" path="res://Beta/Basic-Ai/npc_manager.gd" id="19_no8kt"]
-[ext_resource type="Script" uid="uid://74cjycstgutp" path="res://Scripts/timer_script.gd" id="21_yq1aw"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5a7ea"]
 panorama = ExtResource("1_5a7ea")
@@ -73,19 +71,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("1_1cojt")
 
 [node name="temp" type="Control" parent="UI" unique_id=1360065617]
 anchors_preset = 0
-offset_top = 150.0
-offset_bottom = 150.0
 mouse_filter = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/temp" unique_id=1665111119]
 layout_mode = 0
 offset_right = 883.0
 offset_bottom = 244.0
-scale = Vector2(0.7, 0.7)
 mouse_filter = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=2120744802]
@@ -194,7 +188,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 script = ExtResource("11_7yui6")
 gun1Text = NodePath("VBoxContainer/Gun1")
 gun2Text = NodePath("VBoxContainer/Gun2")
@@ -226,7 +219,6 @@ fit_content = true
 
 [node name="Gun1Image" type="TextureRect" parent="UI/Player/VBoxContainer" unique_id=1804400311]
 layout_mode = 2
-mouse_filter = 2
 
 [node name="Gun2" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=955062284]
 layout_mode = 2
@@ -236,7 +228,6 @@ fit_content = true
 
 [node name="Gun3Image" type="TextureRect" parent="UI/Player/VBoxContainer" unique_id=1378111251]
 layout_mode = 2
-mouse_filter = 2
 
 [node name="Gun 3" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=660937613]
 layout_mode = 2
@@ -246,7 +237,6 @@ fit_content = true
 
 [node name="Gun3Image2" type="TextureRect" parent="UI/Player/VBoxContainer" unique_id=978571063]
 layout_mode = 2
-mouse_filter = 2
 
 [node name="Ammo" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=2131660564]
 layout_mode = 2
@@ -285,6 +275,7 @@ text = "Gun 1: "
 fit_content = true
 
 [node name="MainMenu" type="Control" parent="." unique_id=1592940072]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -301,14 +292,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 color = Color(0.31925523, 0.31925526, 0.31925526, 1)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=1943398484]
 layout_mode = 0
 offset_right = 552.0
 offset_bottom = 1080.0
-mouse_filter = 2
 
 [node name="StartGame" type="Button" parent="MainMenu/VBoxContainer" unique_id=1455489162]
 layout_mode = 2
@@ -325,19 +314,7 @@ layout_mode = 2
 theme = ExtResource("3_kn0ld")
 text = "Exit"
 
-[node name="times" type="VBoxContainer" parent="MainMenu" unique_id=841541552]
-layout_mode = 0
-offset_left = 1140.0
-offset_right = 1719.0
-offset_bottom = 536.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="MainMenu/times" unique_id=617459989]
-layout_mode = 2
-text = "Run 1: "
-fit_content = true
-
 [node name="IntermediateMenu" type="Control" parent="." unique_id=776440582 node_paths=PackedStringArray("activateOnStart")]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -426,11 +403,6 @@ expand_mode = 2
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Button" type="Button" parent="IntermediateMenu/VBoxContainer/VBoxContainer2" unique_id=194921517]
-custom_minimum_size = Vector2(150, 150)
-layout_mode = 2
-text = "Start"
-
 [node name="RichTextLabel" type="RichTextLabel" parent="IntermediateMenu/VBoxContainer/VBoxContainer2" unique_id=1074655660]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -439,8 +411,12 @@ theme_override_font_sizes/normal_font_size = 40
 text = "Press this button and the game and timer will start"
 vertical_alignment = 1
 
+[node name="Button" type="Button" parent="IntermediateMenu/VBoxContainer/VBoxContainer2" unique_id=194921517]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+text = "Start"
+
 [node name="Settings" type="Control" parent="." unique_id=343277470]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -521,37 +497,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Close Settings"
 
-[node name="Timer" type="Control" parent="." unique_id=1020513491]
-custom_minimum_size = Vector2(300, 150)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 590.0
-offset_bottom = 150.0
-mouse_filter = 2
-script = ExtResource("21_yq1aw")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Timer" unique_id=1490319937]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "Time: "
-
-[node name="Score" type="Control" parent="." unique_id=1719809148]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="gameManager" type="Node" parent="." unique_id=616561846]
 script = ExtResource("1_7yui6")
 
 [node name="exit" parent="gameManager" unique_id=852781648 instance=ExtResource("6_0pcbe")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -73.78387, 0, 45.483727)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -78.06841, 0, 34.88587)
 active = true
 
 [node name="EventBus" type="Node" parent="." unique_id=2124413919]
@@ -561,11 +511,10 @@ script = ExtResource("1_ikia7")
 offset_top = 625.0
 offset_right = 400.0
 offset_bottom = 1080.0
-mouse_filter = 2
 
 [node name="cameras" type="Node" parent="." unique_id=476269685 node_paths=PackedStringArray("camList")]
 script = ExtResource("7_o06y3")
-camList = [NodePath("../3D/Player/Camera3D"), NodePath("../3D/Node3D/freeCam"), NodePath("../3D/Whitebox2/Camera3D")]
+camList = [NodePath("../3D/Player/Camera3D"), NodePath("../3D/Node3D/freeCam"), null]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2125569955]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
@@ -609,9 +558,6 @@ navigation_mesh = SubResource("NavigationMesh_hgpy0")
 
 [node name="mall" parent="3D/Whitebox2/NavigationRegion3D" unique_id=440376375 instance=ExtResource("11_ikia7")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
-
-[node name="ceiling" parent="3D/Whitebox2/NavigationRegion3D/mall" index="25" unique_id=939602390]
-visible = false
 
 [node name="NPC Manager" type="Node" parent="3D/Whitebox2" unique_id=1183789877]
 script = ExtResource("19_no8kt")
@@ -658,10 +604,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.746124, 0.39999285, 41.29
 isPickup = true
 pickupType = 2
 gunName = "Silencer"
-
-[node name="Camera3D" type="Camera3D" parent="3D/Whitebox2" unique_id=2139463969]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 50.732697, 0)
-fov = 127.0
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/StartGame" to="MainMenu" method="_on_start_game_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Settings" to="MainMenu" method="_on_settings_pressed"]

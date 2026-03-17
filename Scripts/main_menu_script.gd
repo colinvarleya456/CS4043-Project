@@ -1,17 +1,14 @@
 extends Control
 
 @onready var settings: Control = $"../Settings"
-@export var activateOnStart : Array[Node3D]
+@onready var intermediate_menu: Control = $"../IntermediateMenu"
 
 func _ready() -> void:
 	visible = true
-	settings.visible = false
 
 func _on_start_game_pressed() -> void:
 	visible = false
-	for i in activateOnStart:
-		i.active = true
-
+	intermediate_menu.visible = true
 
 func _on_settings_pressed() -> void:
 	settings.visible = true
