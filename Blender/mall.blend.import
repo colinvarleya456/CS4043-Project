@@ -39,91 +39,100 @@ materials/extract_format=0
 materials/extract_path=""
 _subresources={
 "nodes": {
-"PATH:Empty": {
+"PATH:enters": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_001": {
+"PATH:enters/enter1": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_002": {
+"PATH:enters/enter2": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_003": {
+"PATH:exits": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_004": {
+"PATH:exits/exit1": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_005": {
+"PATH:exits/exit2": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_006": {
+"PATH:shops": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_007": {
+"PATH:shops/Empty": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_008": {
+"PATH:shops/Empty_001": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_009": {
+"PATH:shops/Empty_002": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_010": {
+"PATH:shops/Empty_003": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_011": {
+"PATH:shops/Empty_004": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_012": {
+"PATH:shops/Empty_005": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_013": {
+"PATH:shops/Empty_006": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_014": {
+"PATH:shops/Empty_007": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_015": {
+"PATH:shops/Empty_008": {
+"node/node_type": "Marker3D"
+},
+"PATH:shops/Empty_009": {
+"node/node_type": "Marker3D"
+},
+"PATH:shops/Empty_010": {
 "node/node_type": "Marker3D",
 "node/script": "Marker3D"
 },
-"PATH:Empty_016": {
+"PATH:shops/Empty_011": {
 "node/node_type": "Marker3D"
 },
-"PATH:Empty_017": {
-"node/node_type": "Marker3D"
-},
-"PATH:Empty_018": {
-"node/node_type": "Marker3D"
-},
-"PATH:Empty_019": {
-"node/node_type": "Marker3D"
-},
-"PATH:Empty_020": {
-"node/node_type": "Marker3D"
-},
-"PATH:Empty_021": {
-"node/node_type": "Marker3D"
-},
-"PATH:Empty_022": {
-"node/node_type": "Marker3D"
-},
-"PATH:Empty_023": {
-"node/node_type": "Marker3D"
-},
-"PATH:enter1": {
-"node/node_type": "Marker3D"
-},
-"PATH:enter2": {
-"node/node_type": "Marker3D"
-},
-"PATH:exit1": {
-"node/node_type": "Marker3D"
-},
-"PATH:exit2": {
+"PATH:shops/Empty_012": {
 "node/node_type": "Marker3D",
 "node/script": "Marker3D"
+},
+"PATH:shops/Empty_013": {
+"node/node_type": "Marker3D"
+},
+"PATH:shops/Empty_014": {
+"node/node_type": "Marker3D"
+},
+"PATH:shops/Empty_015": {
+"node/node_type": "Marker3D"
+},
+"PATH:shops/Empty_016": {
+"node/node_type": "Marker3D"
+},
+"PATH:shops/Empty_017": {
+"node/node_type": "Marker3D"
+},
+"PATH:shops/Empty_018": {
+"node/node_type": "Marker3D"
+},
+"PATH:shops/Empty_019": {
+"node/node_type": "Marker3D"
+},
+"PATH:shops/Empty_020": {
+"node/node_type": "Marker3D"
+},
+"PATH:shops/Empty_021": {
+"node/node_type": "Marker3D"
+},
+"PATH:shops/Empty_022": {
+"node/node_type": "Marker3D"
+},
+"PATH:shops/Empty_023": {
+"node/node_type": "Marker3D"
 }
 }
 }

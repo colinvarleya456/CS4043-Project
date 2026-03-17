@@ -20,7 +20,7 @@ func _ready() -> void:
 	connect("eventHeard", eventHeardFunc)
 	agent.target_position = tasks[current_task].position
 	agent.velocity_computed.connect(Callable(_on_velocity_computed))
-	
+	setupAnim()
 
 func _physics_process(delta: float) -> void:
 	if NavigationServer3D.map_get_iteration_id(agent.get_navigation_map()) == 0:
@@ -49,11 +49,29 @@ func hitFunc(damage):
 	print(damage)
 	queue_free()
 
-
 #testing
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
 const RED_MATERIAL = preload("uid://dc4qss36a8qse")
 
 func eventHeardFunc(type):
-	mesh_instance_3d.set_surface_override_material(0, RED_MATERIAL)
-	#queue_free()
+	#mesh_instance_3d.set_surface_override_material(0, RED_MATERIAL)
+	pass
+
+@onready var animation_player: AnimationPlayer = $CIV1/AnimationPlayer
+@onready var civ_1: Node3D = $CIV1
+
+func setupAnim():
+	animation_player.play("Armature|mixamo_com|Layer0")
+
+func _process(delta: float) -> void:
+	civ_1.look_at(agent.target_position)
+	civ_1.rotation_degrees.y -= 180
+
+
+
+
+
+
+
+
+pass

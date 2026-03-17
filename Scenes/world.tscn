@@ -395,6 +395,7 @@ camList = [NodePath("../3D/Player/Camera3D"), NodePath("../3D/Node3D/freeCam"), 
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2125569955]
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+visible = false
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=366777673]
@@ -435,11 +436,8 @@ navigation_mesh = SubResource("NavigationMesh_hgpy0")
 [node name="mall" parent="3D/Whitebox2/NavigationRegion3D" unique_id=440376375 instance=ExtResource("11_ikia7")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="NPC Manager" type="Node" parent="3D/Whitebox2" unique_id=1183789877 node_paths=PackedStringArray("entrances", "exits", "stores")]
+[node name="NPC Manager" type="Node" parent="3D/Whitebox2" unique_id=1183789877]
 script = ExtResource("19_no8kt")
-entrances = [NodePath("../NavigationRegion3D/mall/enter1"), NodePath("../NavigationRegion3D/mall/enter2")]
-exits = [NodePath("../NavigationRegion3D/mall/exit1"), NodePath("../NavigationRegion3D/mall/exit2")]
-stores = [NodePath("../NavigationRegion3D/mall/Empty"), NodePath("../NavigationRegion3D/mall/Empty_001"), NodePath("../NavigationRegion3D/mall/Empty_002"), NodePath("../NavigationRegion3D/mall/Empty_003"), NodePath("../NavigationRegion3D/mall/Empty_004"), NodePath("../NavigationRegion3D/mall/Empty_005"), NodePath("../NavigationRegion3D/mall/Empty_006"), NodePath("../NavigationRegion3D/mall/Empty_007"), NodePath("../NavigationRegion3D/mall/Empty_008"), NodePath("../NavigationRegion3D/mall/Empty_009"), NodePath("../NavigationRegion3D/mall/Empty_010"), NodePath("../NavigationRegion3D/mall/Empty_011"), NodePath("../NavigationRegion3D/mall/Empty_012"), NodePath("../NavigationRegion3D/mall/Empty_013"), NodePath("../NavigationRegion3D/mall/Empty_014"), NodePath("../NavigationRegion3D/mall/Empty_015"), NodePath("../NavigationRegion3D/mall/Empty_016"), NodePath("../NavigationRegion3D/mall/Empty_017"), NodePath("../NavigationRegion3D/mall/Empty_018"), NodePath("../NavigationRegion3D/mall/Empty_019"), NodePath("../NavigationRegion3D/mall/Empty_020"), NodePath("../NavigationRegion3D/mall/Empty_021"), NodePath("../NavigationRegion3D/mall/Empty_022"), NodePath("../NavigationRegion3D/mall/Empty_023")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="3D/Whitebox2" unique_id=1336653271]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -81.25937, -7.1525574e-06, 41.259514)
