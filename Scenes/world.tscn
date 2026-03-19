@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://do45g6f1npwm3" path="res://Blender/Fn Fal.blend" id="16_hgpy0"]
 [ext_resource type="Script" uid="uid://hd8eyvj0s6d1" path="res://Beta/Basic-Ai/npc_manager.gd" id="19_no8kt"]
 [ext_resource type="Script" uid="uid://74cjycstgutp" path="res://Scripts/timer_script.gd" id="21_yq1aw"]
+[ext_resource type="PackedScene" uid="uid://0364oory73cw" path="res://Scenes/turret.tscn" id="22_pyn1s"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5a7ea"]
 panorama = ExtResource("1_5a7ea")
@@ -36,7 +37,7 @@ sky = SubResource("Sky_go701")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_hgpy0"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_pyn1s"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_x6mqx"]
@@ -260,10 +261,10 @@ mouse_filter = 2
 text = "Grenade: Frag 5"
 fit_content = true
 
-[node name="Gun 6" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=605480249]
+[node name="Health" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=605480249]
 layout_mode = 2
 mouse_filter = 2
-text = "Gun 1: "
+text = "Health: 123"
 fit_content = true
 
 [node name="Gun 7" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=1964294948]
@@ -285,6 +286,7 @@ text = "Gun 1: "
 fit_content = true
 
 [node name="MainMenu" type="Control" parent="." unique_id=1592940072]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -547,6 +549,37 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="ExitsUI" type="Control" parent="." unique_id=774841224]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ColorRect" type="ColorRect" parent="ExitsUI" unique_id=1813161155]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ExitsUI" unique_id=1183849566]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 39
+text = "Target Elminated, proceed to an Exit."
+horizontal_alignment = 1
+
 [node name="gameManager" type="Node" parent="." unique_id=616561846]
 script = ExtResource("1_7yui6")
 
@@ -581,7 +614,7 @@ environment = SubResource("Environment_5a7ea")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 
 [node name="Sprite3D" parent="3D/GunUIImageTaker" index="1" unique_id=763784311]
-texture = SubResource("ViewportTexture_hgpy0")
+texture = SubResource("ViewportTexture_pyn1s")
 
 [node name="Player" parent="3D" unique_id=1623261914 instance=ExtResource("1_a02cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.40322, 0, 52.582962)
@@ -610,7 +643,7 @@ navigation_mesh = SubResource("NavigationMesh_hgpy0")
 [node name="mall" parent="3D/Whitebox2/NavigationRegion3D" unique_id=440376375 instance=ExtResource("11_ikia7")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="ceiling" parent="3D/Whitebox2/NavigationRegion3D/mall" index="25" unique_id=939602390]
+[node name="ceiling" parent="3D/Whitebox2/NavigationRegion3D/mall" index="25" unique_id=22777637]
 visible = false
 
 [node name="NPC Manager" type="Node" parent="3D/Whitebox2" unique_id=1183789877]
@@ -662,6 +695,23 @@ gunName = "Silencer"
 [node name="Camera3D" type="Camera3D" parent="3D/Whitebox2" unique_id=2139463969]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 50.732697, 0)
 fov = 127.0
+
+[node name="Interactable5" parent="3D/Whitebox2" unique_id=711484966 instance=ExtResource("5_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -80.746124, 0.39999285, 44.63288)
+isPickup = true
+pickupType = 3
+
+[node name="50cal Turret" parent="3D" unique_id=1898085924 node_paths=PackedStringArray("targetNode") instance=ExtResource("22_pyn1s")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -58.90587, 0.86437404, 52.757034)
+minDist = 3.0
+maxDist = 10.0
+targetNode = NodePath("../Player")
+scanSpeed = 0.01
+
+[node name="Interactable" parent="3D" unique_id=2095920928 instance=ExtResource("5_fo5ed")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.89951, 0.39999285, 43.03773)
+isPickup = true
+pickupType = 4
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/StartGame" to="MainMenu" method="_on_start_game_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Settings" to="MainMenu" method="_on_settings_pressed"]

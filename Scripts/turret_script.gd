@@ -1,13 +1,7 @@
-extends Node3D
-
-
-
-
-
-
-
+class_name turret_class extends StaticBody3D
 
 @export var active : bool = true
+@export var team : int = 1 #0-player 1-enemy
 @export var canShoot : bool = true
 @export var idle : bool = false
 @export_category("Turret Stats")
@@ -66,10 +60,16 @@ extends Node3D
 var bullet = preload("res://Scenes/bullet.tscn")
 var casing = preload("res://Scenes/standard_bullet_casing.tscn")
 
+signal hit(damage)
+
 func _ready() -> void:
 	shoot()
 	scanForPlayer()
 	checkPlayerDistance()
+	connect("hit",hitFunc)
+	vis_cast.target_position.z = -maxDist
+
+@onready var collision_shape_3d: CollisionShape3D = $CollisionShape3D
 
 func _physics_process(delta: float) -> void:
 	if !idle:
@@ -77,7 +77,7 @@ func _physics_process(delta: float) -> void:
 	_rotate(delta)
 	_elevate(delta)
 	idleFunc()
-
+	collision_shape_3d.rotation.y = turret.rotation.y
 # --- shooting ---
 
 func shoot():
@@ -100,6 +100,7 @@ func shoot():
 			bulletInstance.muzzleVelocity = muzzleVelocity
 			bulletInstance.bulletDamage = bulletDamage
 			bulletInstance.timeToDespawn = timeToDespawn
+			bulletInstance.team = team
 		
 			if soundPlayer != null: #play sound
 				soundPlayer.play()
@@ -195,6 +196,7 @@ func checkPlayerDistance():
 var target := Vector3(1,0,0)
 
 func idleFunc():
+	return
 	if turret.rotation_degrees.y > 85:
 		target = Vector3(-1,0,0)
 	
@@ -204,3 +206,8 @@ func idleFunc():
 	
 	if idle:
 		currentTarget = global_position + target
+
+func hitFunc(damage):
+	health -= damage
+	if health <= 0:
+		queue_free()

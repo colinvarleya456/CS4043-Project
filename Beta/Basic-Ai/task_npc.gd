@@ -1,6 +1,7 @@
 class_name TaskNPC
 
 extends CharacterBody3D
+@export var health : int = 10
 
 @onready var agent: NavigationAgent3D = $NavigationAgent3D
 
@@ -46,8 +47,9 @@ func _on_velocity_computed(safe_velocity: Vector3):
 	move_and_slide()
 
 func hitFunc(damage):
-	print(damage)
-	queue_free()
+	health -= damage
+	if health <= 0:
+		queue_free()
 
 #testing
 @onready var mesh_instance_3d: MeshInstance3D = $MeshInstance3D
@@ -66,12 +68,3 @@ func setupAnim():
 func _process(delta: float) -> void:
 	civ_1.look_at(agent.target_position)
 	civ_1.rotation_degrees.y -= 180
-
-
-
-
-
-
-
-
-pass

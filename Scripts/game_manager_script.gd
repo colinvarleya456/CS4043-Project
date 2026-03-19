@@ -10,13 +10,23 @@ func _ready() -> void:
 	connect("exited",exitedFunc)
 	for child in get_children():
 		exits.append(child)
+	exits_ui.visible = false
 
 func _process(delta: float) -> void:
 	if targetToKill == null:
 		winCondition = true
+		onTargetDeath()
 		for i in exits:
 			i.active = true
-		
+
+var runOnce : bool = false
+@onready var exits_ui: Control = $"../ExitsUI"
+
+func onTargetDeath():
+	if runOnce == false:
+		runOnce = true
+		exits_ui.visible = true
+
 
 @onready var timer: Control = $"../Timer"
 @onready var intermediate_menu: Control = $"../IntermediateMenu"
@@ -32,6 +42,7 @@ func exitedFunc():
 		i.active = false
 	timer.active = false
 	timer.visible = false
+	exits_ui.visible = false
 	player.global_position = player.startPosition
 	
 	runCount += 1

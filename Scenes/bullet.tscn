@@ -107,11 +107,12 @@ material = SubResource("StandardMaterial3D_odot3")
 radius = 0.015
 height = 0.2
 
-[node name="RigidBody3D" type="RigidBody3D" unique_id=1814034787]
+[node name="RigidBody3D" type="RigidBody3D" unique_id=1814034787 node_paths=PackedStringArray("shape_cast")]
 collision_layer = 0
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_fhthq")
+shape_cast = NodePath("shapeCast")
 
 [node name="GPUTrail3D" type="GPUParticles3D" parent="." unique_id=824651205]
 visible = false
@@ -145,7 +146,8 @@ draw_skin = SubResource("Skin_ju0wb")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
 shape = SubResource("CylinderShape3D_odot3")
 target_position = Vector3(0, 0, 0)
-collision_mask = 9
+margin = 0.3
+collision_mask = 0
 debug_shape_custom_color = Color(1, 0, 1, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1102329349]
