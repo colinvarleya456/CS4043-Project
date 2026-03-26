@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bkplowg1l5o45"]
+
+[ext_resource type="Script" uid="uid://b370papejftep" path="res://Scripts/interactables/grenade.gd" id="1_5rnft"]
+[ext_resource type="PackedScene" uid="uid://c2id25d7lmd35" path="res://Blender/grenade model.glb" id="2_ft0g1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5rnft"]
+rough = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_20vs5"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_7bgu8"]
+
+[node name="Grenade" type="RigidBody3D" unique_id=532981209]
+physics_material_override = SubResource("PhysicsMaterial_5rnft")
+continuous_cd = true
+script = ExtResource("1_5rnft")
+
+[node name="grenade model" parent="." unique_id=636097107 instance=ExtResource("2_ft0g1")]
+transform = Transform3D(2.5952203, 0, 0, 0, 2.5952203, 0, 0, 0, 2.5952203, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1990107206]
+transform = Transform3D(0.16402678, 0, 0, 0, 0.16402678, 0, 0, 0, 0.16402678, -0.10591867, 0.10107842, 0.14266741)
+shape = SubResource("SphereShape3D_20vs5")
+
+[node name="Radius" type="Area3D" parent="." unique_id=1607251993]
+transform = Transform3D(17.077986, 0, 0, 0, 17.077986, 0, 0, 0, 17.077986, -0.111373566, 0.10865763, 0.15173861)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Radius" unique_id=391102875]
+shape = SubResource("SphereShape3D_7bgu8")
+
+[node name="Fuzetimer" type="Timer" parent="." unique_id=1991618927]
+wait_time = 5.0
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Fuzetimer" to="." method="_on_fuzetimer_timeout"]

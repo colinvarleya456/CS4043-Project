@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bqo4a4j00uqm2"]
+
+[ext_resource type="Script" uid="uid://bi63nyuscmtcu" path="res://Scripts/interactables/box_pickup_script.gd" id="1_6m1m0"]
+[ext_resource type="Texture2D" uid="uid://dvjcjy2tdkme8" path="res://particlePack/PNG (Transparent)/flame_02.png" id="2_64xhp"]
+[ext_resource type="PackedScene" uid="uid://c2id25d7lmd35" path="res://Blender/grenade model.glb" id="2_yck71"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yck71"]
+spread = 180.0
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6h10g"]
+transparency = 1
+vertex_color_use_as_albedo = true
+vertex_color_is_srgb = true
+albedo_color = Color(4.415934, 2.1557462, 0, 1)
+albedo_texture = ExtResource("2_64xhp")
+billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_xhph5"]
+material = SubResource("StandardMaterial3D_6h10g")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6h10g"]
+
+[node name="boxPickup" type="RigidBody3D" unique_id=2035561427]
+gravity_scale = 0.5
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_6m1m0")
+
+[node name="grenade model" parent="." unique_id=636097107 instance=ExtResource("2_yck71")]
+transform = Transform3D(3.8843706, 0, 0, 0, 3.8843706, 0, 0, 0, 3.8843706, 0.05511328, 0, -0.05452268)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=492560927]
+emitting = false
+amount = 16
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_yck71")
+draw_pass_1 = SubResource("QuadMesh_xhph5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1520452530]
+transform = Transform3D(0.2281691, 0, 0, 0, 0.2281691, 0, 0, 0, 0.2281691, -0.10671872, 0.14776212, 0.16196913)
+shape = SubResource("SphereShape3D_6h10g")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

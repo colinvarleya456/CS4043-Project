@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://1uv743ocy8rl"]
+
+[ext_resource type="Script" uid="uid://8gofayikyjt" path="res://Scripts/interactables/wallfragment.gd" id="1_0qmmg"]
+
+[node name="RigidBody3D" type="RigidBody3D" unique_id=1497132723 groups=["Explodable"]]
+script = ExtResource("1_0qmmg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1743078213]

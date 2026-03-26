@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dq4cphn2xlpaw"]
+
+[ext_resource type="Script" uid="uid://t4ic4su5qm2s" path="res://Scripts/interactables/testbox.gd" id="1_vgqto"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vgqto"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_u61vr"]
+
+[node name="RigidBody3D" type="RigidBody3D" unique_id=317903991 groups=["Explodable"]]
+script = ExtResource("1_vgqto")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2054320306]
+transform = Transform3D(1.0362958, 0, 0, 0, 1.0362958, 0, 0, 0, 1.0362958, 0, 0, 0)
+shape = SubResource("BoxShape3D_vgqto")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1876399156]
+transform = Transform3D(1.0362958, 0, 0, 0, 1.0362958, 0, 0, 0, 1.0362958, 0, 0, 0)
+mesh = SubResource("BoxMesh_u61vr")
