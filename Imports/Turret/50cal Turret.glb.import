@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/50cal Turret.glb-6778533a3459db81c51c72fd9209
 
 [params]
 
-nodes/root_type=""
+nodes/root_type="StaticBody3D"
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true

@@ -2,6 +2,9 @@ class_name player_class extends CharacterBody3D
 
 @export var active := false
 
+@export var team : int = 0 #0-player 1-enemy
+@export var health : int = 100
+@export var startPosition : Vector3
 @export var player_cam : Camera3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var player_collision: CollisionShape3D = $playerCollision
@@ -51,11 +54,14 @@ var mouse_input : Vector2
 
 signal pickup(type, data, gunName)
 
+signal hit(damage)
 
 func _ready() -> void:
-	assignPlayerInfo()
 	connect("pickup", pickupFunc)
+	connect("hit",hitFunc)
+	assignPlayerInfo()
 	movementSpeed = startSpeed
+	startPosition = global_position
 
 func _physics_process(delta: float) -> void:
 	if active:
@@ -114,7 +120,7 @@ func _input(event: InputEvent) -> void:
 	
 
 		
-		if Input.is_action_pressed("control"): #crouch
+		if Input.is_action_just_pressed("control"): #crouch
 			if !isCrouch:
 				animation_player.play("crouch")
 				isCrouch = !isCrouch
@@ -192,20 +198,11 @@ func weapon_sway(delta): #Weapon moving when mouse moves
 		gun_holder.rotation.x = lerp(gun_holder.rotation.x, mouse_input.y * weapon_rotation_amount * (-1 if invert_weapon_sway else 1), 10 * delta)
 		gun_holder.rotation.y = lerp(gun_holder.rotation.y, mouse_input.x * weapon_rotation_amount * (-1 if invert_weapon_sway else 1), 10 * delta)	
 
-#var def_weapon_holder_pos : Vector3
-#func weapon_bob(vel : float, delta):
-#	if gun_holder.get_child_count() > 0:
-#		if vel > 0 and is_on_floor():
-#			var bob_amount : float = 0.01
-#			var bob_freq : float = 0.01
-#			gun_holder.position.y = lerp(gun_holder.position.y, def_weapon_holder_pos.y + sin(Time.get_ticks_msec() * bob_freq) * bob_amount, 10 * delta)
-#			gun_holder.position.x = lerp(gun_holder.position.x, def_weapon_holder_pos.x + sin(Time.get_ticks_msec() * bob_freq * 0.5) * bob_amount, 10 * delta)
-#			
-#		else:
-#			gun_holder.position.y = lerp(gun_holder.position.y, def_weapon_holder_pos.y, 10 * delta)
-#			gun_holder.position.x = lerp(gun_holder.position.x, def_weapon_holder_pos.x, 10 * delta)
+func hitFunc(damage):
+	health -= damage
+	if health <= 0:
+		print("PLAYER DEAD PLAYER DEAD PLAYER DEAD PLAYER DEAD PLAYER DEAD PLAYER DEAD PLAYER DEAD PLAYER DEAD PLAYER DEAD PLAYER DEAD PLAYER DEAD ")
 
-#@export var gunScenes : Array[PackedScene]
 @export var heldGuns : Array[PackedScene]
 @export var heldGunsNames : Array[String]
 @export var selectedWeapon : int = 0
@@ -263,7 +260,9 @@ func changeWeapon(picked_weapon : int, weapon_scene : PackedScene, gunName): #0 
 
 		if gun_holder.get_child_count() > 0:
 			gun_holder.get_child(0).reparent(stowed_weapons)
+		
 		gun_holder.add_child(t)
+		t.team = team
 		t.gunName = gunName
 		t.rotation = Vector3.ZERO
 	
@@ -313,7 +312,11 @@ func pickupFunc(type : int, data, gunName : String):
 			if gun_holder.get_child_count() > 0:
 				gun_holder.get_child(0).silenced = true
 				gun_holder.get_child(0).addSilencer()
-		
+		3:
+			if gun_holder.get_child_count() > 0:
+				gun_holder.get_child(0).reserveAmmo += data
+		4:
+			health += data
 	
 	
 	

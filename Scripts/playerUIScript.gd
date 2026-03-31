@@ -22,6 +22,7 @@ func _ready() -> void:
 @export var gun2Name : String = ""
 @export var gun3Name : String = ""
 
+@onready var health: RichTextLabel = $VBoxContainer/Health
 
 func _process(delta: float) -> void:
 	var currentWeapon : gun_class
@@ -42,6 +43,6 @@ func _process(delta: float) -> void:
 		1:
 			grenadeText.text = str("Flashbang: ", player.grenadeCounts[1])
 	
-	
+	health.text = str("Health: ",player.health)
 	
 	

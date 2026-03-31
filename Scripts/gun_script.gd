@@ -1,11 +1,10 @@
 class_name gun_class extends Node3D
 
+@export var team : int  #0-player 1-enemy
 @export var gunName : String
 @export var heldPosition : int = 0
-
 @export var adsCam : Camera3D
 @export var adsNode : Node3D
-
 @export var canShoot : bool = true
 @export var reloading : bool = false
 
@@ -64,6 +63,7 @@ func _ready():
 	updateAmmoUI()
 	if silenced:
 		addSilencer()
+	
 
 func _input(event):
 	if event.is_action_pressed("r"):
@@ -98,6 +98,7 @@ func fire() -> void:
 		bulletInstance.muzzleVelocity = muzzleVelocity 
 		bulletInstance.bulletDamage = bulletDamage
 		bulletInstance.timeToDespawn = timeToDespawn
+		bulletInstance.team = team
 		world.add_child.call_deferred(bulletInstance)
 		
 		if casingEject != null and doesEject == true: #spawn casings

@@ -19,6 +19,11 @@ func _ready() -> void:
 			2:
 				label_3d.text = "Silencer"
 			
+			3:
+				label_3d.text = str("Ammo: ", ammoAmmount)
+			4:
+				label_3d.text = str("Health: ", healthAmount)
+			
 	else:
 		label_3d.text = ""
 		#match throwEffect:
@@ -38,7 +43,6 @@ func _ready() -> void:
 
 @onready var label_3d: Label3D = $Label3D
 
-
 func interactFunc(player):
 	print("interact called : ", player)
 	playerNode = player
@@ -46,27 +50,31 @@ func interactFunc(player):
 		isHeld = !isHeld
 		isThrown = false
 	else:
-		match pickupType:
+		match pickupType: #(type : int, data, gunName : String):
 			0:
 				player.emit_signal("pickup",0,gunScene,gunName)
 			1:
 				player.emit_signal("pickup",1,grenadeType,"")
 			2:
 				player.emit_signal("pickup",2,null,"")
-			
+			3:
+				player.emit_signal("pickup",3,ammoAmmount,"")
+			4:
+				player.emit_signal("pickup",4,healthAmount,"")
 		queue_free()
 
 @export_category("Pickup")
 @export var isPickup : bool = false
-@export_enum("Gun", "Grenade", "Silencer") var pickupType : int = 0
+@export_enum("Gun", "Grenade", "Silencer", "Ammo", "Health") var pickupType : int = 0
 @export var gunScene : PackedScene
 @export var gunName : String
 @export_enum("Frag","Flashbang") var grenadeType : int = 0
+@export var ammoAmmount : int = 15
+@export var healthAmount : int = 20
 
 @export_category("Throwable")
 @export var isThrown : bool = false
 @export var isHeld : bool = false
-
 
 func _physics_process(delta: float) -> void:
 	if isHeld:
@@ -78,7 +86,6 @@ func _input(event: InputEvent) -> void:
 			isHeld = false
 			isThrown = true
 			apply_central_impulse(-playerNode.player_cam.global_transform.basis.z * playerNode.throwStrength)
-
 
 @export_enum("Frag", "Flashbang", "Water", "Oil", "Glass Shatter") var throwEffect = 0
 

@@ -91,6 +91,7 @@ _data = {
 [sub_resource type="SphereShape3D" id="SphereShape3D_v0iea"]
 
 [node name="Player" type="CharacterBody3D" unique_id=1623261914 node_paths=PackedStringArray("player_cam", "gun_holder", "held_object_position")]
+collision_layer = 4
 script = ExtResource("1_v0iea")
 player_cam = NodePath("Camera3D")
 gun_holder = NodePath("Camera3D/gunHolder")

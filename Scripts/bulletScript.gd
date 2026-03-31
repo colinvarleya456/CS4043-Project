@@ -1,5 +1,6 @@
 extends RigidBody3D
 
+@export var team : int  #0-player 1-enemy
 @export var fireRate : float
 @export var bulletDamage : float
 @export var muzzleVelocity : float
@@ -13,17 +14,19 @@ enum ammoTypes {NORMAL, EXPLOSIVE, HOLLOWPOINT}
 @onready var gpu_particles_3d : GPUParticles3D = $GPUParticles3D
 @onready var world : Node = get_tree().get_root().get_node("World")
 
-@onready var shape_cast: ShapeCast3D = $shapeCast
-
+@export var shape_cast: ShapeCast3D
 
 func _ready() -> void:
 	despawn()
 	visible = true
 	gpu_trail_3d.emitting = false
 	gpu_trail_3d.color_ramp.gradient.set_color(0, trailColour)
-
-
-
+	shape_cast.set_collision_mask_value(1,true)
+	match team:
+		0:
+			shape_cast.set_collision_mask_value(4,true)
+		1:
+			shape_cast.set_collision_mask_value(3,true)
 
 @onready var decal : PackedScene = preload("res://Scenes/bulletDecal.tscn")
 
@@ -32,7 +35,7 @@ func _physics_process(delta: float) -> void:
 		print("1")
 		if shape_cast.collision_result[0]["collider"] != null:
 			print("2")
-			if shape_cast.collision_result[0]["collider"] is TaskNPC:
+			if shape_cast.collision_result[0]["collider"] is TaskNPC or shape_cast.collision_result[0]["collider"] is turret_class or shape_cast.collision_result[0]["collider"] is player_class:
 				print("3")
 				shape_cast.collision_result[0]["collider"].emit_signal("hit", bulletDamage)
 				queue_free()
