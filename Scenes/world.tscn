@@ -13,8 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://cff6k4wy2hemo" path="res://Images/exit_PNG45-2839366326.png" id="5_0pcbe"]
 [ext_resource type="PackedScene" uid="uid://bqo4a4j00uqm2" path="res://Scenes/Interactable.tscn" id="5_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://boyaoofi4q8bu" path="res://Scenes/exit.tscn" id="6_0pcbe"]
-[ext_resource type="Script" uid="uid://b77s2hqkgbmng" path="res://Scripts/free_cam_script.gd" id="6_k7acu"]
-[ext_resource type="Script" uid="uid://dddab2rrqqfx2" path="res://Scripts/camera_testing_script.gd" id="7_o06y3"]
+[ext_resource type="Script" path="res://Scripts/free_cam_script.gd" id="6_k7acu"]
+[ext_resource type="Script" path="res://Scripts/camera_testing_script.gd" id="7_o06y3"]
 [ext_resource type="PackedScene" uid="uid://1ei30plq3o6e" path="res://Scenes/gun_ui_image_taker.tscn" id="10_0fj1v"]
 [ext_resource type="Script" uid="uid://cmrq1fxi0xcel" path="res://Scripts/playerUIScript.gd" id="11_7yui6"]
 [ext_resource type="PackedScene" uid="uid://bme81jst7f2qu" path="res://Scenes/mall.tscn" id="11_ikia7"]
@@ -618,7 +618,6 @@ texture = SubResource("ViewportTexture_pyn1s")
 
 [node name="Player" parent="3D" unique_id=1623261914 instance=ExtResource("1_a02cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.40322, 0, 52.582962)
-collision_layer = 4
 camMinAngle = -90.0
 
 [node name="Node3D" type="Node3D" parent="3D" unique_id=1766216882]
@@ -643,7 +642,7 @@ navigation_mesh = SubResource("NavigationMesh_hgpy0")
 [node name="mall" parent="3D/Whitebox2/NavigationRegion3D" unique_id=440376375 instance=ExtResource("11_ikia7")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="ceiling" parent="3D/Whitebox2/NavigationRegion3D/mall" index="25" unique_id=22777637]
+[node name="ceiling" parent="3D/Whitebox2/NavigationRegion3D/mall" index="25" unique_id=309059667]
 visible = false
 
 [node name="NPC Manager" type="Node" parent="3D/Whitebox2" unique_id=1183789877]

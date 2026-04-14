@@ -33,7 +33,7 @@ radius = 1.0
 [node name="CIV1" parent="." unique_id=770862806 instance=ExtResource("2_xognl")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1, 0)
 
-[node name="Skeleton3D" parent="CIV1/Armature" parent_id_path=PackedInt32Array(770862806, 1232812978) index="0" unique_id=923716345]
+[node name="Skeleton3D" parent="CIV1/Armature" parent_id_path=PackedInt32Array(770862806, 1238315218) index="0" unique_id=1991461367]
 bones/0/position = Vector3(0.9779847, -1.238572, -196.99054)
 bones/0/rotation = Quaternion(-0.6901965, 0.024848543, -0.05824204, 0.7208462)
 bones/1/rotation = Quaternion(-0.051254544, -0.009772254, 0.015481368, 0.9985179)
@@ -75,5 +75,10 @@ bones/62/rotation = Quaternion(-0.056746848, 0.27989978, 0.9577298, -0.03449116)
 bones/63/rotation = Quaternion(-0.2959232, -0.011804571, -0.00724597, 0.9551113)
 bones/64/rotation = Quaternion(0.44838637, 0.009993021, -0.061767623, 0.8916472)
 bones/65/rotation = Quaternion(0.3955748, 0.053043924, -0.023280371, 0.9166051)
+
+[node name="DebugInfo" type="Label3D" parent="." unique_id=1935671971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27735, 0)
+billboard = 1
+text = "Test"
 
 [editable path="CIV1"]

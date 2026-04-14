@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b86kvcqv0m0g5"
-path="res://.godot/imported/Blueprint.blend-8d9dbeacf45a1921ac7babd2ea21497e.scn"
+uid="uid://t3lmytrbk61i"
+path="res://.godot/imported/LargeDumpster.blend-a9780b2e3cbb36a1953c6c3b701ab77c.scn"
 
 [deps]
 
-source_file="res://Blender/Blueprint.blend"
-dest_files=["res://.godot/imported/Blueprint.blend-8d9dbeacf45a1921ac7babd2ea21497e.scn"]
+source_file="res://Blender/LargeDumpster.blend"
+dest_files=["res://.godot/imported/LargeDumpster.blend-a9780b2e3cbb36a1953c6c3b701ab77c.scn"]
 
 [params]
 

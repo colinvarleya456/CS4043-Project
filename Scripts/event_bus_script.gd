@@ -1,6 +1,6 @@
 extends Node
 
-
+class_name event_bus
 
 @onready var v_box_container: VBoxContainer = $VBoxContainer
 
@@ -11,6 +11,7 @@ signal addEvent(data)
 # Dictionary is [type, global position, loudness]
 
 #type : int 
+enum EVENT_TYPE { SHOT_FIRED, GRENADE_EXPLOSION }
 #0-shot fired
 #1-grenade explosion
 
@@ -55,7 +56,7 @@ func notifyNPCS(data): # type, pos, loudness
 		var eventLoudness : float = data[2]
 		
 		if eventPos.distance_to(child.global_position) < eventLoudness:
-			child.emit_signal("eventHeard",eventType)
+			child.emit_signal("eventHeard", eventType, eventPos)
 
 
 

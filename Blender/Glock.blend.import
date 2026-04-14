@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b86kvcqv0m0g5"
-path="res://.godot/imported/Blueprint.blend-8d9dbeacf45a1921ac7babd2ea21497e.scn"
+uid="uid://dqrrd1cxc7ci8"
+path="res://.godot/imported/Glock.blend-94c499b21d0157061665150be8600fc8.scn"
 
 [deps]
 
-source_file="res://Blender/Blueprint.blend"
-dest_files=["res://.godot/imported/Blueprint.blend-8d9dbeacf45a1921ac7babd2ea21497e.scn"]
+source_file="res://Blender/Glock.blend"
+dest_files=["res://.godot/imported/Glock.blend-94c499b21d0157061665150be8600fc8.scn"]
 
 [params]
 
