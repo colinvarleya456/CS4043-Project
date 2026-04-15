@@ -76,118 +76,6 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_1cojt")
 
-[node name="temp" type="Control" parent="UI" unique_id=1360065617]
-anchors_preset = 0
-offset_top = 150.0
-offset_bottom = 150.0
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/temp" unique_id=1665111119]
-layout_mode = 0
-offset_right = 883.0
-offset_bottom = 244.0
-scale = Vector2(0.7, 0.7)
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=2120744802]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "F - Interact"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=100802581]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "T - Throw"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel3" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1163156890]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "Z/X - Hide/Un-Hide Mouse"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel4" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1051867045]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "Left/Right Mouse button - Shoot/Aim"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel5" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=2138303274]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "R - Reload"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel6" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=2096573749]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "G - Grenade"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel7" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1186311252]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "4 - Grenade Type"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel8" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1960522686]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "1 2 3 - Select Weapon"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel10" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1190145092]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "Shift/Control - run/crouch"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel9" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1371625131]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "Shift/Control - free cam up/down"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel11" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1036519188]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "\"/\" - settings menu"
-fit_content = true
-horizontal_alignment = 1
-
 [node name="Player" type="Control" parent="UI" unique_id=1402122063 node_paths=PackedStringArray("gun1Text", "gun2Text", "gun3Text", "ammoText", "grenadeText", "gun1Texture", "gun2Texture", "gun3Texture")]
 layout_mode = 1
 anchors_preset = 15
@@ -339,7 +227,6 @@ text = "Run 1: "
 fit_content = true
 
 [node name="IntermediateMenu" type="Control" parent="." unique_id=776440582 node_paths=PackedStringArray("activateOnStart")]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -349,6 +236,118 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("4_axeuq")
 activateOnStart = [NodePath("../3D/Player")]
+
+[node name="temp" type="Control" parent="IntermediateMenu" unique_id=1360065617]
+anchors_preset = 0
+offset_top = 150.0
+offset_bottom = 150.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="IntermediateMenu/temp" unique_id=1665111119]
+layout_mode = 0
+offset_right = 883.0
+offset_bottom = 244.0
+scale = Vector2(0.7, 0.7)
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=2120744802]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "F - Interact"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=100802581]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "T - Throw"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=1163156890]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "Z/X - Hide/Un-Hide Mouse"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=1051867045]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "Left/Right Mouse button - Shoot/Aim"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=2138303274]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "R - Reload"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=2096573749]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "G - Grenade"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=1186311252]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "4 - Grenade Type"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel8" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=1960522686]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "1 2 3 - Select Weapon"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel10" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=1190145092]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "Shift/Control - run/crouch"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel9" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=1371625131]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "Shift/Control - free cam up/down"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel11" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=1036519188]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "\"/\" - settings menu"
+fit_content = true
+horizontal_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="IntermediateMenu" unique_id=1129950047]
 layout_mode = 1
@@ -601,8 +600,7 @@ script = ExtResource("7_o06y3")
 camList = [NodePath("../3D/Player/Camera3D"), NodePath("../3D/Node3D/freeCam"), NodePath("../3D/Whitebox2/Camera3D")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2125569955]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=366777673]
@@ -618,7 +616,6 @@ texture = SubResource("ViewportTexture_pyn1s")
 
 [node name="Player" parent="3D" unique_id=1623261914 instance=ExtResource("1_a02cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.40322, 0, 52.582962)
-collision_layer = 4
 camMinAngle = -90.0
 
 [node name="Node3D" type="Node3D" parent="3D" unique_id=1766216882]
@@ -630,21 +627,14 @@ movementSpeed = 1.0
 
 [node name="Whitebox2" type="Node3D" parent="3D" unique_id=1445113065]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D/Whitebox2" unique_id=1081311748]
-transform = Transform3D(-0.8660254, -0.07821719, -0.49384424, 0, -0.98768836, 0.15643437, -0.50000006, 0.13547614, 0.8553632, 0, 0, 0)
-shadow_enabled = true
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="3D/Whitebox2" unique_id=498752849]
 environment = SubResource("Environment_r2wna")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="3D/Whitebox2" unique_id=84435259]
 navigation_mesh = SubResource("NavigationMesh_hgpy0")
 
-[node name="mall" parent="3D/Whitebox2/NavigationRegion3D" unique_id=440376375 instance=ExtResource("11_ikia7")]
+[node name="mall" parent="3D/Whitebox2/NavigationRegion3D" unique_id=547457002 instance=ExtResource("11_ikia7")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
-
-[node name="ceiling" parent="3D/Whitebox2/NavigationRegion3D/mall" index="25" unique_id=22777637]
-visible = false
 
 [node name="NPC Manager" type="Node" parent="3D/Whitebox2" unique_id=1183789877]
 script = ExtResource("19_no8kt")

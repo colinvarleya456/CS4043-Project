@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dl30v84rs4qnw"]
+
+[ext_resource type="Texture2D" uid="uid://vco0g6chjfmg" path="res://Images/marker3.jpg" id="1_ff2g7"]
+
+[node name="NPC Marker" type="Node3D" unique_id=1113161066]
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1550840456]
+transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, 0, 1.1, 0)
+pixel_size = 0.005
+billboard = 1
+texture_filter = 0
+texture = ExtResource("1_ff2g7")

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dr24ocpna03ek" path="res://Beta/Basic-Ai/task_npc.gd" id="1_s0w88"]
 [ext_resource type="PackedScene" uid="uid://bigrmwelprmyc" path="res://mixamo/scenes/civ_1.tscn" id="2_xognl"]
+[ext_resource type="PackedScene" uid="uid://dl30v84rs4qnw" path="res://Scenes/npc_marker.tscn" id="3_4gpyc"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_d4m5l"]
 
@@ -75,5 +76,7 @@ bones/62/rotation = Quaternion(-0.056746848, 0.27989978, 0.9577298, -0.03449116)
 bones/63/rotation = Quaternion(-0.2959232, -0.011804571, -0.00724597, 0.9551113)
 bones/64/rotation = Quaternion(0.44838637, 0.009993021, -0.061767623, 0.8916472)
 bones/65/rotation = Quaternion(0.3955748, 0.053043924, -0.023280371, 0.9166051)
+
+[node name="NPC Marker" parent="." unique_id=1113161066 instance=ExtResource("3_4gpyc")]
 
 [editable path="CIV1"]
