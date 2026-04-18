@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://hd8eyvj0s6d1" path="res://Beta/Basic-Ai/npc_manager.gd" id="19_no8kt"]
 [ext_resource type="Script" uid="uid://74cjycstgutp" path="res://Scripts/timer_script.gd" id="21_yq1aw"]
 [ext_resource type="PackedScene" uid="uid://0364oory73cw" path="res://Scenes/turret.tscn" id="22_pyn1s"]
+[ext_resource type="PackedScene" uid="uid://t3lmytrbk61i" path="res://Blender/LargeDumpster.blend" id="23_no8kt"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5a7ea"]
 panorama = ExtResource("1_5a7ea")
@@ -37,7 +38,7 @@ sky = SubResource("Sky_go701")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_pyn1s"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_xbk3s"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_x6mqx"]
@@ -612,7 +613,7 @@ environment = SubResource("Environment_5a7ea")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 
 [node name="Sprite3D" parent="3D/GunUIImageTaker" index="1" unique_id=763784311]
-texture = SubResource("ViewportTexture_pyn1s")
+texture = SubResource("ViewportTexture_xbk3s")
 
 [node name="Player" parent="3D" unique_id=1623261914 instance=ExtResource("1_a02cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.40322, 0, 52.582962)
@@ -702,6 +703,9 @@ scanSpeed = 0.01
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.89951, 0.39999285, 43.03773)
 isPickup = true
 pickupType = 4
+
+[node name="LargeDumpster" parent="3D" unique_id=1347602953 instance=ExtResource("23_no8kt")]
+transform = Transform3D(0.54208964, 0.008704887, 0.8402758, -0.0037578382, 0.9999613, -0.007934839, -0.8403123, 0.0011437554, 0.5421013, 3.675, 0, -1.697)
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/StartGame" to="MainMenu" method="_on_start_game_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Settings" to="MainMenu" method="_on_settings_pressed"]
