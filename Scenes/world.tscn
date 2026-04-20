@@ -23,6 +23,7 @@
 [ext_resource type="Script" uid="uid://74cjycstgutp" path="res://Scripts/timer_script.gd" id="21_yq1aw"]
 [ext_resource type="PackedScene" uid="uid://0364oory73cw" path="res://Scenes/turret.tscn" id="22_pyn1s"]
 [ext_resource type="PackedScene" uid="uid://t3lmytrbk61i" path="res://Blender/LargeDumpster.blend" id="23_no8kt"]
+[ext_resource type="PackedScene" uid="uid://cu6oirdxtywvh" path="res://Blender/trashcan1.blend" id="24_xbk3s"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5a7ea"]
 panorama = ExtResource("1_5a7ea")
@@ -632,6 +633,7 @@ movementSpeed = 1.0
 environment = SubResource("Environment_r2wna")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="3D/Whitebox2" unique_id=84435259]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2168715, 0, 0.5270473)
 navigation_mesh = SubResource("NavigationMesh_hgpy0")
 
 [node name="mall" parent="3D/Whitebox2/NavigationRegion3D" unique_id=547457002 instance=ExtResource("11_ikia7")]
@@ -706,6 +708,9 @@ pickupType = 4
 
 [node name="LargeDumpster" parent="3D" unique_id=1347602953 instance=ExtResource("23_no8kt")]
 transform = Transform3D(0.54208964, 0.008704887, 0.8402758, -0.0037578382, 0.9999613, -0.007934839, -0.8403123, 0.0011437554, 0.5421013, 3.675, 0, -1.697)
+
+[node name="trashcan1" parent="3D" unique_id=1178948346 instance=ExtResource("24_xbk3s")]
+transform = Transform3D(-0.9929634, 0, 0.11842129, 0, 1, 0, -0.11842129, 0, -0.9929634, -12.944, 0.32, 25.594)
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/StartGame" to="MainMenu" method="_on_start_game_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Settings" to="MainMenu" method="_on_settings_pressed"]
