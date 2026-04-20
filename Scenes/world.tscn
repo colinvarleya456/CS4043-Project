@@ -10,6 +10,7 @@
 [ext_resource type="Theme" uid="uid://djsc2y66b7jpy" path="res://Themes/mainMenuTheme.tres" id="3_kn0ld"]
 [ext_resource type="Script" uid="uid://c13q6o6aj5rmc" path="res://Scripts/intermediate_menu_script.gd" id="4_axeuq"]
 [ext_resource type="Texture2D" uid="uid://dp3a3xnni2oe4" path="res://Images/ammunition-icon-md.png" id="4_t2t4p"]
+[ext_resource type="Shader" uid="uid://basn22y8sy2am" path="res://Scenes/world.gdshader" id="4_xbk3s"]
 [ext_resource type="Texture2D" uid="uid://cff6k4wy2hemo" path="res://Images/exit_PNG45-2839366326.png" id="5_0pcbe"]
 [ext_resource type="PackedScene" uid="uid://bqo4a4j00uqm2" path="res://Scenes/Interactable.tscn" id="5_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://boyaoofi4q8bu" path="res://Scenes/exit.tscn" id="6_0pcbe"]
@@ -22,8 +23,28 @@
 [ext_resource type="Script" uid="uid://hd8eyvj0s6d1" path="res://Beta/Basic-Ai/npc_manager.gd" id="19_no8kt"]
 [ext_resource type="Script" uid="uid://74cjycstgutp" path="res://Scripts/timer_script.gd" id="21_yq1aw"]
 [ext_resource type="PackedScene" uid="uid://0364oory73cw" path="res://Scenes/turret.tscn" id="22_pyn1s"]
-[ext_resource type="PackedScene" uid="uid://t3lmytrbk61i" path="res://Blender/LargeDumpster.blend" id="23_no8kt"]
-[ext_resource type="PackedScene" uid="uid://cu6oirdxtywvh" path="res://Blender/trashcan1.blend" id="24_xbk3s"]
+[ext_resource type="StyleBox" path="res://panel_style.tres" id="23_no8kt"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pyn1s"]
+bg_color = Color(0.050980393, 0.07058824, 0.09803922, 0.8627451)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbk3s"]
+bg_color = Color(0.15686275, 0.15686275, 0.15686275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i4fjy"]
+bg_color = Color(1, 0.78431374, 0.23529412, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i4fjy"]
+shader = ExtResource("4_xbk3s")
+shader_parameter/health_percent = 1.0
+shader_parameter/vignette_color = Color(0.8, 0, 0, 1)
+shader_parameter/intensity = 1.0
+shader_parameter/radius = 0.55
+shader_parameter/softness = 0.35
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5a7ea"]
 panorama = ExtResource("1_5a7ea")
@@ -39,7 +60,7 @@ sky = SubResource("Sky_go701")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_xbk3s"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_no8kt"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_x6mqx"]
@@ -78,7 +99,120 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_1cojt")
 
-[node name="Player" type="Control" parent="UI" unique_id=1402122063 node_paths=PackedStringArray("gun1Text", "gun2Text", "gun3Text", "ammoText", "grenadeText", "gun1Texture", "gun2Texture", "gun3Texture")]
+[node name="temp" type="Control" parent="UI" unique_id=1360065617]
+visible = false
+anchors_preset = 0
+offset_top = 150.0
+offset_bottom = 150.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/temp" unique_id=1665111119]
+layout_mode = 0
+offset_right = 883.0
+offset_bottom = 678.0
+scale = Vector2(0.7, 0.7)
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=2120744802]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "F - Interact"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=100802581]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "T - Throw"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1163156890]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "Z/X - Hide/Un-Hide Mouse"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1051867045]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "Left/Right Mouse button - Shoot/Aim"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=2138303274]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "R - Reload"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=2096573749]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "G - Grenade"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1186311252]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "4 - Grenade Type"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel8" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1960522686]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "1 2 3 - Select Weapon"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel10" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1190145092]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "Shift/Control - run/crouch"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel9" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1371625131]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "Shift/Control - free cam up/down"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="RichTextLabel11" type="RichTextLabel" parent="UI/temp/VBoxContainer" unique_id=1036519188]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 42
+text = "\"/\" - settings menu"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Player" type="Control" parent="UI" unique_id=1402122063]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,93 +221,349 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("11_7yui6")
-gun1Text = NodePath("VBoxContainer/Gun1")
-gun2Text = NodePath("VBoxContainer/Gun2")
-gun3Text = NodePath("VBoxContainer/Gun 3")
-ammoText = NodePath("VBoxContainer/Ammo")
-grenadeText = NodePath("VBoxContainer/Grenade")
-gun1Texture = NodePath("VBoxContainer/Gun1Image")
-gun2Texture = NodePath("VBoxContainer/Gun3Image")
-gun3Texture = NodePath("VBoxContainer/Gun3Image2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Player" unique_id=1706187430]
+[node name="UI" type="Control" parent="UI" unique_id=1226159146]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -320.0
+offset_bottom = -180.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+
+[node name="TopLeft" type="Control" parent="UI/UI" unique_id=1586323954]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 20.0
+offset_bottom = 20.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/TopLeft" unique_id=241620585]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 8
+
+[node name="DisguisePanel" type="Panel" parent="UI/UI/TopLeft/VBoxContainer" unique_id=775788852]
+custom_minimum_size = Vector2(220, 70)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("23_no8kt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/TopLeft/VBoxContainer/DisguisePanel" unique_id=1483251749]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 4
+
+[node name="Disguise" type="Label" parent="UI/UI/TopLeft/VBoxContainer/DisguisePanel/VBoxContainer" unique_id=2029230041]
+modulate = Color(0.7058824, 0.7058824, 0.7058824, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "   Disguise"
+
+[node name="Uniform" type="Label" parent="UI/UI/TopLeft/VBoxContainer/DisguisePanel/VBoxContainer" unique_id=1407801575]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "  ● GUARD UNIFORM"
+
+[node name="ThreatPanel" type="Panel" parent="UI/UI/TopLeft/VBoxContainer" unique_id=2017403325]
+custom_minimum_size = Vector2(220, 90)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pyn1s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/TopLeft/VBoxContainer/ThreatPanel" unique_id=1431968807]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ThreatLevel" type="Label" parent="UI/UI/TopLeft/VBoxContainer/ThreatPanel/VBoxContainer" unique_id=1359865518]
+modulate = Color(0.7058824, 0.7058824, 0.7058824, 1)
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "   THREAT LEVEL"
+
+[node name="Caution" type="Label" parent="UI/UI/TopLeft/VBoxContainer/ThreatPanel/VBoxContainer" unique_id=746412739]
+modulate = Color(1, 0.78431374, 0.23529412, 1)
+layout_mode = 2
+text = " CAUTION"
+
+[node name="ProgressBar" type="ProgressBar" parent="UI/UI/TopLeft/VBoxContainer/ThreatPanel/VBoxContainer" unique_id=1046830051]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_xbk3s")
+theme_override_styles/fill = SubResource("StyleBoxFlat_i4fjy")
+
+[node name="TopRight" type="Control" parent="UI/UI" unique_id=1342066145]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -240.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 170.0
+grow_horizontal = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/UI/TopRight" unique_id=1393902993]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_constants/separation = 22
+
+[node name="TargetPanel" type="Panel" parent="UI/UI/TopRight/VBoxContainer2" unique_id=1260957931]
+custom_minimum_size = Vector2(220, 70)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("23_no8kt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/TopRight/VBoxContainer2/TargetPanel" unique_id=1471936978]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TargetLabel" type="Label" parent="UI/UI/TopRight/VBoxContainer2/TargetPanel/VBoxContainer" unique_id=810460397]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "   TARGET:"
+
+[node name="TargetName" type="Label" parent="UI/UI/TopRight/VBoxContainer2/TargetPanel/VBoxContainer" unique_id=93978373]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "  PlaceHolder Name
+"
+horizontal_alignment = 2
+
+[node name="StatusPanel" type="Panel" parent="UI/UI/TopRight/VBoxContainer2" unique_id=1274290365]
+custom_minimum_size = Vector2(220, 60)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("23_no8kt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/TopRight/VBoxContainer2/StatusPanel" unique_id=1302630441]
+layout_mode = 0
+offset_right = 79.0
+offset_bottom = 50.0
+
+[node name="StatusLabel" type="Label" parent="UI/UI/TopRight/VBoxContainer2/StatusPanel/VBoxContainer" unique_id=199336055]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "   STATUS"
+
+[node name="RealStatus" type="Label" parent="UI/UI/TopRight/VBoxContainer2/StatusPanel/VBoxContainer" unique_id=842555067]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "  Locating..."
+
+[node name="BottomLeft" type="Control" parent="UI/UI" unique_id=611576733]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -300.0
+offset_right = 60.0
+offset_bottom = -260.0
+grow_vertical = 0
+
+[node name="ControlsPanel" type="Panel" parent="UI/UI/BottomLeft" unique_id=1280664237]
+custom_minimum_size = Vector2(300, 250)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("23_no8kt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/BottomLeft/ControlsPanel" unique_id=1397838279]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 2
+
+[node name="Label" type="Label" parent="UI/UI/BottomLeft/ControlsPanel/VBoxContainer" unique_id=1635081339]
+layout_mode = 2
+text = "  CONTROLS:"
+
+[node name="Label2" type="Label" parent="UI/UI/BottomLeft/ControlsPanel/VBoxContainer" unique_id=934450027]
+layout_mode = 2
+text = "  [F] – Interact"
+
+[node name="Label3" type="Label" parent="UI/UI/BottomLeft/ControlsPanel/VBoxContainer" unique_id=1641316991]
+layout_mode = 2
+text = "  [T] – Throw"
+
+[node name="Label4" type="Label" parent="UI/UI/BottomLeft/ControlsPanel/VBoxContainer" unique_id=1487093489]
+layout_mode = 2
+text = "  [Z/X] – Toggle Mouse"
+
+[node name="Label5" type="Label" parent="UI/UI/BottomLeft/ControlsPanel/VBoxContainer" unique_id=1725380462]
+layout_mode = 2
+text = "  LMB/RMB – Shoot/Aim"
+
+[node name="Label6" type="Label" parent="UI/UI/BottomLeft/ControlsPanel/VBoxContainer" unique_id=1914730998]
+layout_mode = 2
+text = "  [R] – Reload"
+
+[node name="Label7" type="Label" parent="UI/UI/BottomLeft/ControlsPanel/VBoxContainer" unique_id=1973813388]
+layout_mode = 2
+text = "  [G] – Grenade"
+
+[node name="Label8" type="Label" parent="UI/UI/BottomLeft/ControlsPanel/VBoxContainer" unique_id=1968862811]
+layout_mode = 2
+text = "  1/2/3 – Weapons"
+
+[node name="Label9" type="Label" parent="UI/UI/BottomLeft/ControlsPanel/VBoxContainer" unique_id=1586328950]
+layout_mode = 2
+text = "  Shift/Control - FreeCam "
+
+[node name="Label10" type="Label" parent="UI/UI/BottomLeft/ControlsPanel/VBoxContainer" unique_id=835159561]
+layout_mode = 2
+text = "  [/] - Settings menu"
+
+[node name="BottomCenter" type="Control" parent="UI/UI" unique_id=516893047]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -120.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ObjectivePanel" type="Panel" parent="UI/UI/BottomCenter" unique_id=209314732]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("23_no8kt")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/BottomCenter/ObjectivePanel" unique_id=986930828]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 6
+
+[node name="ObjectivesLabel" type="Label" parent="UI/UI/BottomCenter/ObjectivePanel/VBoxContainer" unique_id=2079005555]
+layout_mode = 2
+text = "  Objectives"
+
+[node name="ObjectivePlayer" type="Label" parent="UI/UI/BottomCenter/ObjectivePanel/VBoxContainer" unique_id=775351567]
+layout_mode = 2
+text = "  Locate Target"
+
+[node name="TotalObjective" type="Label" parent="UI/UI/BottomCenter/ObjectivePanel/VBoxContainer" unique_id=461545296]
+layout_mode = 2
+text = "  Elimate Target - no witnesses"
+
+[node name="BottomRight" type="Control" parent="UI/UI" unique_id=597013133]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -316.0
-offset_top = -540.0
+offset_left = -280.0
+offset_top = -250.0
+offset_right = -240.0
+offset_bottom = -210.0
 grow_horizontal = 0
 grow_vertical = 0
-mouse_filter = 2
 
-[node name="Gun1" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=356494070]
-layout_mode = 2
-mouse_filter = 2
-text = "Gun 1: 222"
-fit_content = true
+[node name="WeaponPanel" type="Panel" parent="UI/UI/BottomRight" unique_id=966054194]
+layout_mode = 0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 240.0
+offset_bottom = 200.0
+theme_override_styles/panel = ExtResource("23_no8kt")
 
-[node name="Gun1Image" type="TextureRect" parent="UI/Player/VBoxContainer" unique_id=1804400311]
-layout_mode = 2
-mouse_filter = 2
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/BottomRight/WeaponPanel" unique_id=1267610923]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
 
-[node name="Gun2" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=955062284]
+[node name="Gun1Row" type="HBoxContainer" parent="UI/UI/BottomRight/WeaponPanel/VBoxContainer" unique_id=839536757]
 layout_mode = 2
-mouse_filter = 2
-text = "Gun 2: "
-fit_content = true
+theme_override_constants/separation = 8
 
-[node name="Gun3Image" type="TextureRect" parent="UI/Player/VBoxContainer" unique_id=1378111251]
+[node name="Gun1Image" type="TextureRect" parent="UI/UI/BottomRight/WeaponPanel/VBoxContainer/Gun1Row" unique_id=223229965]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-mouse_filter = 2
 
-[node name="Gun 3" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=660937613]
+[node name="Gun1Text" type="RichTextLabel" parent="UI/UI/BottomRight/WeaponPanel/VBoxContainer/Gun1Row" unique_id=920823353]
 layout_mode = 2
-mouse_filter = 2
-text = "Gun 3: "
-fit_content = true
+size_flags_horizontal = 3
+text = "  Pistol
+"
 
-[node name="Gun3Image2" type="TextureRect" parent="UI/Player/VBoxContainer" unique_id=978571063]
+[node name="Gun2Row" type="HBoxContainer" parent="UI/UI/BottomRight/WeaponPanel/VBoxContainer" unique_id=2073285341]
 layout_mode = 2
-mouse_filter = 2
+theme_override_constants/separation = 8
 
-[node name="Ammo" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=2131660564]
+[node name="Gun2Image" type="TextureRect" parent="UI/UI/BottomRight/WeaponPanel/VBoxContainer/Gun2Row" unique_id=19644052]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-mouse_filter = 2
-text = "Ammo: 24/30 - 300"
-fit_content = true
 
-[node name="Grenade" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=913134931]
+[node name="Gun2Text" type="RichTextLabel" parent="UI/UI/BottomRight/WeaponPanel/VBoxContainer/Gun2Row" unique_id=1102333838]
 layout_mode = 2
-mouse_filter = 2
-text = "Grenade: Frag 5"
-fit_content = true
+size_flags_horizontal = 3
+text = "  Rifle
+"
 
-[node name="Health" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=605480249]
+[node name="Gun3Row" type="HBoxContainer" parent="UI/UI/BottomRight/WeaponPanel/VBoxContainer" unique_id=731075503]
 layout_mode = 2
-mouse_filter = 2
-text = "Health: 123"
-fit_content = true
+theme_override_constants/separation = 8
 
-[node name="Gun 7" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=1964294948]
+[node name="Gun3Image" type="TextureRect" parent="UI/UI/BottomRight/WeaponPanel/VBoxContainer/Gun3Row" unique_id=82516492]
+custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
-mouse_filter = 2
-text = "Gun 1: "
-fit_content = true
 
-[node name="Gun 8" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=365328991]
+[node name="Gun3Text" type="RichTextLabel" parent="UI/UI/BottomRight/WeaponPanel/VBoxContainer/Gun3Row" unique_id=2105106978]
 layout_mode = 2
-mouse_filter = 2
-text = "Gun 1: "
-fit_content = true
+size_flags_horizontal = 3
+text = "  Sniper
+"
 
-[node name="Gun 9" type="RichTextLabel" parent="UI/Player/VBoxContainer" unique_id=210234816]
+[node name="ColorRect" type="ColorRect" parent="UI/UI/BottomRight/WeaponPanel/VBoxContainer" unique_id=1252855077]
 layout_mode = 2
-mouse_filter = 2
-text = "Gun 1: "
-fit_content = true
+color = Color(0.21176471, 0.27058825, 0.30980393, 1)
+
+[node name="AmmoText" type="RichTextLabel" parent="UI/UI/BottomRight/WeaponPanel/VBoxContainer" unique_id=1162749884]
+layout_mode = 2
+size_flags_vertical = 3
+text = "  Ammo: 0
+"
+
+[node name="GrenadeText" type="RichTextLabel" parent="UI/UI/BottomRight/WeaponPanel/VBoxContainer" unique_id=783652331]
+layout_mode = 2
+size_flags_vertical = 3
+text = "  Grenade: 0
+"
+
+[node name="HealthVignette" type="ColorRect" parent="UI" unique_id=495469101]
+material = SubResource("ShaderMaterial_i4fjy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="MainMenu" type="Control" parent="." unique_id=1592940072]
 visible = false
@@ -229,6 +619,7 @@ text = "Run 1: "
 fit_content = true
 
 [node name="IntermediateMenu" type="Control" parent="." unique_id=776440582 node_paths=PackedStringArray("activateOnStart")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -238,118 +629,6 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("4_axeuq")
 activateOnStart = [NodePath("../3D/Player")]
-
-[node name="temp" type="Control" parent="IntermediateMenu" unique_id=1360065617]
-anchors_preset = 0
-offset_top = 150.0
-offset_bottom = 150.0
-mouse_filter = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="IntermediateMenu/temp" unique_id=1665111119]
-layout_mode = 0
-offset_right = 883.0
-offset_bottom = 244.0
-scale = Vector2(0.7, 0.7)
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=2120744802]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "F - Interact"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=100802581]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "T - Throw"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel3" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=1163156890]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "Z/X - Hide/Un-Hide Mouse"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel4" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=1051867045]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "Left/Right Mouse button - Shoot/Aim"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel5" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=2138303274]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "R - Reload"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel6" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=2096573749]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "G - Grenade"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel7" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=1186311252]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "4 - Grenade Type"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel8" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=1960522686]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "1 2 3 - Select Weapon"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel10" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=1190145092]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "Shift/Control - run/crouch"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel9" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=1371625131]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "Shift/Control - free cam up/down"
-fit_content = true
-horizontal_alignment = 1
-
-[node name="RichTextLabel11" type="RichTextLabel" parent="IntermediateMenu/temp/VBoxContainer" unique_id=1036519188]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 42
-text = "\"/\" - settings menu"
-fit_content = true
-horizontal_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="IntermediateMenu" unique_id=1129950047]
 layout_mode = 1
@@ -525,6 +804,7 @@ size_flags_horizontal = 3
 text = "Close Settings"
 
 [node name="Timer" type="Control" parent="." unique_id=1020513491]
+visible = false
 custom_minimum_size = Vector2(300, 150)
 layout_mode = 3
 anchors_preset = 0
@@ -545,12 +825,14 @@ theme_override_font_sizes/normal_font_size = 42
 text = "Time: "
 
 [node name="Score" type="Control" parent="." unique_id=1719809148]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ExitsUI" type="Control" parent="." unique_id=774841224]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -602,7 +884,8 @@ script = ExtResource("7_o06y3")
 camList = [NodePath("../3D/Player/Camera3D"), NodePath("../3D/Node3D/freeCam"), NodePath("../3D/Whitebox2/Camera3D")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2125569955]
-transform = Transform3D(1, 0, 0, 0, -1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0)
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+visible = false
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=366777673]
@@ -614,7 +897,7 @@ environment = SubResource("Environment_5a7ea")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 
 [node name="Sprite3D" parent="3D/GunUIImageTaker" index="1" unique_id=763784311]
-texture = SubResource("ViewportTexture_xbk3s")
+texture = SubResource("ViewportTexture_no8kt")
 
 [node name="Player" parent="3D" unique_id=1623261914 instance=ExtResource("1_a02cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.40322, 0, 52.582962)
@@ -629,15 +912,21 @@ movementSpeed = 1.0
 
 [node name="Whitebox2" type="Node3D" parent="3D" unique_id=1445113065]
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="3D/Whitebox2" unique_id=1081311748]
+transform = Transform3D(-0.8660254, -0.07821719, -0.49384424, 0, -0.98768836, 0.15643437, -0.50000006, 0.13547614, 0.8553632, 0, 0, 0)
+shadow_enabled = true
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="3D/Whitebox2" unique_id=498752849]
 environment = SubResource("Environment_r2wna")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="3D/Whitebox2" unique_id=84435259]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2168715, 0, 0.5270473)
 navigation_mesh = SubResource("NavigationMesh_hgpy0")
 
 [node name="mall" parent="3D/Whitebox2/NavigationRegion3D" unique_id=547457002 instance=ExtResource("11_ikia7")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
+
+[node name="ceiling" parent="3D/Whitebox2/NavigationRegion3D/mall" index="25" unique_id=1180485697]
+visible = false
 
 [node name="NPC Manager" type="Node" parent="3D/Whitebox2" unique_id=1183789877]
 script = ExtResource("19_no8kt")
@@ -706,11 +995,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -82.89951, 0.39999285, 43.037
 isPickup = true
 pickupType = 4
 
-[node name="LargeDumpster" parent="3D" unique_id=1347602953 instance=ExtResource("23_no8kt")]
-transform = Transform3D(0.54208964, 0.008704887, 0.8402758, -0.0037578382, 0.9999613, -0.007934839, -0.8403123, 0.0011437554, 0.5421013, 3.675, 0, -1.697)
-
-[node name="trashcan1" parent="3D" unique_id=1178948346 instance=ExtResource("24_xbk3s")]
-transform = Transform3D(-0.9929634, 0, 0.11842129, 0, 1, 0, -0.11842129, 0, -0.9929634, -12.944, 0.32, 25.594)
+[node name="GameUI" type="CanvasLayer" parent="." unique_id=467329940]
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/StartGame" to="MainMenu" method="_on_start_game_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Settings" to="MainMenu" method="_on_settings_pressed"]
