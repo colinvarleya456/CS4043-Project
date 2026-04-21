@@ -4,6 +4,7 @@ class_name player_class extends CharacterBody3D
 
 @export var team : int = 0 #0-player 1-enemy
 @export var health : int = 100
+@export var max_health : int = 100
 @export var startPosition : Vector3
 @export var player_cam : Camera3D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer

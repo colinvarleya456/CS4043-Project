@@ -1,6 +1,4 @@
 extends Control
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -23,13 +21,16 @@ func _ready() -> void:
 @export var gun3Name : String = ""
 
 @onready var health: RichTextLabel = $VBoxContainer/Health
+@onready var vignette = $"../HealthVignette"
 
 func _process(delta: float) -> void:
 	var currentWeapon : gun_class
+	var health_percent = float(player.health) / player.max_health
+	vignette.material.set_shader_parameter("health_percent", health_percent)
 	
 	if player.gun_holder.get_child_count() > 0:
 		currentWeapon = player.gun_holder.get_child(0)
-	
+
 	gun1Text.text = str("Gun 1: ", gun1Name)
 	gun2Text.text = str("Gun 2: ", gun2Name)
 	gun3Text.text = str("Gun 3: ", gun3Name)
@@ -44,5 +45,3 @@ func _process(delta: float) -> void:
 			grenadeText.text = str("Flashbang: ", player.grenadeCounts[1])
 	
 	health.text = str("Health: ",player.health)
-	
-	
