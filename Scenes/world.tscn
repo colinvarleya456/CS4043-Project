@@ -16,7 +16,9 @@
 [ext_resource type="PackedScene" uid="uid://bqo4a4j00uqm2" path="res://Scenes/Interactable.tscn" id="5_fo5ed"]
 [ext_resource type="PackedScene" uid="uid://boyaoofi4q8bu" path="res://Scenes/exit.tscn" id="6_0pcbe"]
 [ext_resource type="Script" uid="uid://b77s2hqkgbmng" path="res://Scripts/free_cam_script.gd" id="6_k7acu"]
+[ext_resource type="StyleBox" uid="uid://dqb6ua0rd2xbb" path="res://hoverMenu.tres" id="7_i4fjy"]
 [ext_resource type="Script" uid="uid://dddab2rrqqfx2" path="res://Scripts/camera_testing_script.gd" id="7_o06y3"]
+[ext_resource type="StyleBox" uid="uid://c5k6saftjswde" path="res://normalMenu.tres" id="7_pt3ps"]
 [ext_resource type="PackedScene" uid="uid://1ei30plq3o6e" path="res://Scenes/gun_ui_image_taker.tscn" id="10_0fj1v"]
 [ext_resource type="Script" uid="uid://cmrq1fxi0xcel" path="res://Scripts/playerUIScript.gd" id="11_7yui6"]
 [ext_resource type="PackedScene" uid="uid://bme81jst7f2qu" path="res://Scenes/mall.tscn" id="11_ikia7"]
@@ -53,7 +55,7 @@ sky = SubResource("Sky_go701")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_no8kt"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_xbk3s"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_x6mqx"]
@@ -205,7 +207,8 @@ text = "\"/\" - settings menu"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="Player" type="Control" parent="UI" unique_id=1402122063]
+[node name="Player" type="Control" parent="UI" unique_id=1402122063 node_paths=PackedStringArray("gun1Text", "gun2Text", "gun3Text", "ammoText", "grenadeText", "gun1Texture", "gun2Texture", "gun3Texture")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -214,8 +217,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("11_7yui6")
+gun1Text = NodePath("../UI/BottomRight/WeaponPanel/VBoxContainer/Gun1Row/Gun1Text")
+gun2Text = NodePath("../UI/BottomRight/WeaponPanel/VBoxContainer/Gun2Row/Gun2Text")
+gun3Text = NodePath("../UI/BottomRight/WeaponPanel/VBoxContainer/Gun3Row/Gun3Text")
+ammoText = NodePath("../UI/BottomRight/WeaponPanel/VBoxContainer/AmmoText")
+grenadeText = NodePath("../UI/BottomRight/WeaponPanel/VBoxContainer/GrenadeText")
+gun1Texture = NodePath("../UI/BottomRight/WeaponPanel/VBoxContainer/Gun1Row/Gun1Image")
+gun2Texture = NodePath("../UI/BottomRight/WeaponPanel/VBoxContainer/Gun2Row/Gun2Image")
+gun3Texture = NodePath("../UI/BottomRight/WeaponPanel/VBoxContainer/Gun3Row/Gun3Image")
 
 [node name="UI" type="Control" parent="UI" unique_id=1226159146]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -559,7 +571,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="MainMenu" type="Control" parent="." unique_id=1592940072]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -569,47 +580,71 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_c5t2i")
 
-[node name="TextureRect" type="ColorRect" parent="MainMenu" unique_id=1768776388]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=1943398484]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -178.5
+offset_top = -174.0
+offset_right = 178.5
+offset_bottom = 174.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 30
+
+[node name="StartGame" type="Button" parent="MainMenu/VBoxContainer" unique_id=1455489162]
+layout_mode = 2
+theme = ExtResource("3_kn0ld")
+theme_override_font_sizes/font_size = 52
+theme_override_styles/normal = ExtResource("7_pt3ps")
+theme_override_styles/hover = ExtResource("7_i4fjy")
+text = "Start Game"
+
+[node name="Settings" type="Button" parent="MainMenu/VBoxContainer" unique_id=551077185]
+layout_mode = 2
+theme = ExtResource("3_kn0ld")
+theme_override_font_sizes/font_size = 52
+theme_override_styles/normal = ExtResource("7_pt3ps")
+theme_override_styles/hover = ExtResource("7_i4fjy")
+text = "Settings"
+
+[node name="Exit" type="Button" parent="MainMenu/VBoxContainer" unique_id=1410276222]
+layout_mode = 2
+theme = ExtResource("3_kn0ld")
+theme_override_font_sizes/font_size = 52
+theme_override_styles/normal = ExtResource("7_pt3ps")
+theme_override_styles/hover = ExtResource("7_i4fjy")
+text = "Exit"
+
+[node name="times" type="VBoxContainer" parent="MainMenu" unique_id=841541552]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -579.0
+offset_top = -268.0
+offset_bottom = 268.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MainMenu/times" unique_id=617459989]
+layout_mode = 2
+text = "Run 1: "
+fit_content = true
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu" unique_id=473830429]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-color = Color(0.31925523, 0.31925526, 0.31925526, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu" unique_id=1943398484]
-layout_mode = 0
-offset_right = 552.0
-offset_bottom = 1080.0
-mouse_filter = 2
-
-[node name="StartGame" type="Button" parent="MainMenu/VBoxContainer" unique_id=1455489162]
-layout_mode = 2
-theme = ExtResource("3_kn0ld")
-text = "Start Game"
-
-[node name="Settings" type="Button" parent="MainMenu/VBoxContainer" unique_id=551077185]
-layout_mode = 2
-theme = ExtResource("3_kn0ld")
-text = "Settings"
-
-[node name="Exit" type="Button" parent="MainMenu/VBoxContainer" unique_id=1410276222]
-layout_mode = 2
-theme = ExtResource("3_kn0ld")
-text = "Exit"
-
-[node name="times" type="VBoxContainer" parent="MainMenu" unique_id=841541552]
-layout_mode = 0
-offset_left = 1140.0
-offset_right = 1719.0
-offset_bottom = 536.0
-
-[node name="RichTextLabel" type="RichTextLabel" parent="MainMenu/times" unique_id=617459989]
-layout_mode = 2
-text = "Run 1: "
-fit_content = true
 
 [node name="IntermediateMenu" type="Control" parent="." unique_id=776440582 node_paths=PackedStringArray("activateOnStart")]
 visible = false
@@ -890,7 +925,7 @@ environment = SubResource("Environment_5a7ea")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 
 [node name="Sprite3D" parent="3D/GunUIImageTaker" index="1" unique_id=763784311]
-texture = SubResource("ViewportTexture_no8kt")
+texture = SubResource("ViewportTexture_xbk3s")
 
 [node name="Player" parent="3D" unique_id=1623261914 instance=ExtResource("1_a02cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.40322, 0, 52.582962)
@@ -918,7 +953,7 @@ navigation_mesh = SubResource("NavigationMesh_hgpy0")
 [node name="mall" parent="3D/Whitebox2/NavigationRegion3D" unique_id=547457002 instance=ExtResource("11_ikia7")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="ceiling" parent="3D/Whitebox2/NavigationRegion3D/mall" index="25" unique_id=1888997214]
+[node name="ceiling" parent="3D/Whitebox2/NavigationRegion3D/mall" index="25" unique_id=86727707]
 visible = false
 
 [node name="NPC Manager" type="Node" parent="3D/Whitebox2" unique_id=1183789877]
