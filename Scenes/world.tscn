@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://chq8legp5ha7k" path="res://Scripts/event_bus_script.gd" id="1_ikia7"]
 [ext_resource type="Script" uid="uid://c3i686pfntb7v" path="res://Scripts/settings_script.gd" id="2_e0ngr"]
 [ext_resource type="Theme" uid="uid://djsc2y66b7jpy" path="res://Themes/mainMenuTheme.tres" id="3_kn0ld"]
+[ext_resource type="StyleBox" uid="uid://c4nw6ap5cyhki" path="res://new_style_box_flat.tres" id="3_xbk3s"]
 [ext_resource type="Script" uid="uid://c13q6o6aj5rmc" path="res://Scripts/intermediate_menu_script.gd" id="4_axeuq"]
 [ext_resource type="Texture2D" uid="uid://dp3a3xnni2oe4" path="res://Images/ammunition-icon-md.png" id="4_t2t4p"]
 [ext_resource type="Shader" uid="uid://basn22y8sy2am" path="res://Scenes/world.gdshader" id="4_xbk3s"]
@@ -23,14 +24,6 @@
 [ext_resource type="Script" uid="uid://hd8eyvj0s6d1" path="res://Beta/Basic-Ai/npc_manager.gd" id="19_no8kt"]
 [ext_resource type="Script" uid="uid://74cjycstgutp" path="res://Scripts/timer_script.gd" id="21_yq1aw"]
 [ext_resource type="PackedScene" uid="uid://0364oory73cw" path="res://Scenes/turret.tscn" id="22_pyn1s"]
-[ext_resource type="StyleBox" path="res://panel_style.tres" id="23_no8kt"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pyn1s"]
-bg_color = Color(0.050980393, 0.07058824, 0.09803922, 0.8627451)
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xbk3s"]
 bg_color = Color(0.15686275, 0.15686275, 0.15686275, 1)
@@ -252,7 +245,7 @@ custom_minimum_size = Vector2(220, 70)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_styles/panel = ExtResource("23_no8kt")
+theme_override_styles/panel = ExtResource("3_xbk3s")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/TopLeft/VBoxContainer/DisguisePanel" unique_id=1483251749]
 layout_mode = 1
@@ -277,7 +270,7 @@ text = "  ● GUARD UNIFORM"
 [node name="ThreatPanel" type="Panel" parent="UI/UI/TopLeft/VBoxContainer" unique_id=2017403325]
 custom_minimum_size = Vector2(220, 90)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pyn1s")
+theme_override_styles/panel = ExtResource("3_xbk3s")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/TopLeft/VBoxContainer/ThreatPanel" unique_id=1431968807]
 layout_mode = 0
@@ -326,7 +319,7 @@ theme_override_constants/separation = 22
 [node name="TargetPanel" type="Panel" parent="UI/UI/TopRight/VBoxContainer2" unique_id=1260957931]
 custom_minimum_size = Vector2(220, 70)
 layout_mode = 2
-theme_override_styles/panel = ExtResource("23_no8kt")
+theme_override_styles/panel = ExtResource("3_xbk3s")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/TopRight/VBoxContainer2/TargetPanel" unique_id=1471936978]
 layout_mode = 0
@@ -348,7 +341,7 @@ horizontal_alignment = 2
 [node name="StatusPanel" type="Panel" parent="UI/UI/TopRight/VBoxContainer2" unique_id=1274290365]
 custom_minimum_size = Vector2(220, 60)
 layout_mode = 2
-theme_override_styles/panel = ExtResource("23_no8kt")
+theme_override_styles/panel = ExtResource("3_xbk3s")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/TopRight/VBoxContainer2/StatusPanel" unique_id=1302630441]
 layout_mode = 0
@@ -381,7 +374,7 @@ custom_minimum_size = Vector2(300, 250)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-theme_override_styles/panel = ExtResource("23_no8kt")
+theme_override_styles/panel = ExtResource("3_xbk3s")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/BottomLeft/ControlsPanel" unique_id=1397838279]
 layout_mode = 0
@@ -447,7 +440,7 @@ custom_minimum_size = Vector2(300, 100)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-theme_override_styles/panel = ExtResource("23_no8kt")
+theme_override_styles/panel = ExtResource("3_xbk3s")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/BottomCenter/ObjectivePanel" unique_id=986930828]
 layout_mode = 0
@@ -487,7 +480,7 @@ offset_left = -20.0
 offset_top = -20.0
 offset_right = 240.0
 offset_bottom = 200.0
-theme_override_styles/panel = ExtResource("23_no8kt")
+theme_override_styles/panel = ExtResource("3_xbk3s")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/UI/BottomRight/WeaponPanel" unique_id=1267610923]
 layout_mode = 1
@@ -925,7 +918,7 @@ navigation_mesh = SubResource("NavigationMesh_hgpy0")
 [node name="mall" parent="3D/Whitebox2/NavigationRegion3D" unique_id=547457002 instance=ExtResource("11_ikia7")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 0)
 
-[node name="ceiling" parent="3D/Whitebox2/NavigationRegion3D/mall" index="25" unique_id=1180485697]
+[node name="ceiling" parent="3D/Whitebox2/NavigationRegion3D/mall" index="25" unique_id=1888997214]
 visible = false
 
 [node name="NPC Manager" type="Node" parent="3D/Whitebox2" unique_id=1183789877]
