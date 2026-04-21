@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://t3lmytrbk61i"
-path="res://.godot/imported/LargeDumpster.blend-a9780b2e3cbb36a1953c6c3b701ab77c.scn"
+valid=false
 
 [deps]
 
 source_file="res://Blender/LargeDumpster.blend"
-dest_files=["res://.godot/imported/LargeDumpster.blend-a9780b2e3cbb36a1953c6c3b701ab77c.scn"]
 
 [params]
 

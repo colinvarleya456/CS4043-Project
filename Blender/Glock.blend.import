@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dqrrd1cxc7ci8"
-path="res://.godot/imported/Glock.blend-94c499b21d0157061665150be8600fc8.scn"
+valid=false
 
 [deps]
 
 source_file="res://Blender/Glock.blend"
-dest_files=["res://.godot/imported/Glock.blend-94c499b21d0157061665150be8600fc8.scn"]
 
 [params]
 

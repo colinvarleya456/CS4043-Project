@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://fih2trcfwfau"
-path="res://.godot/imported/PlantPot-WoodenTexture.blend-0953be6b83193280bc82b6baf8c28002.scn"
+valid=false
 
 [deps]
 
 source_file="res://Blender/PlantPot-WoodenTexture.blend"
-dest_files=["res://.godot/imported/PlantPot-WoodenTexture.blend-0953be6b83193280bc82b6baf8c28002.scn"]
 
 [params]
 

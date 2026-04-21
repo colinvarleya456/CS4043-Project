@@ -27,8 +27,8 @@ enum weaponTypes {PISTOL, RIFLE, SMG, SNIPER, LMG}
 @export var gunSFX : Array[AudioStreamWAV]
 @export var silencedGunSFX : Array[AudioStreamWAV]
 
-@onready var end_of_barrel: Node3D = $Armature/Skeleton3D/a/end_of_barrel
-@onready var end_of_barrel_look_at: Node3D = $Armature/Skeleton3D/a/end_of_barrel_look_at
+@export var end_of_barrel: Node3D
+@export var end_of_barrel_look_at: Node3D
 
 @onready var world: Node = get_tree().get_root().get_node("World")
 @onready var gun_audio: AudioStreamPlayer3D = $gun_audio
@@ -149,8 +149,9 @@ func updateAmmoUI():
 	pass
 
 func recoil():
-	get_parent().get_parent().rotation_degrees.x += vRecoil
-	recoilAccumulation += vRecoil
+	if get_parent().get_parent() is player_class:
+		get_parent().get_parent().rotation_degrees.x += vRecoil
+		recoilAccumulation += vRecoil
 
 @export_range(0,1,.01) var recoilCalming : float
 @export var recoilAccumulation : float

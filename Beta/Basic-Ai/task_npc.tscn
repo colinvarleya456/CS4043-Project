@@ -78,5 +78,6 @@ bones/64/rotation = Quaternion(0.44838637, 0.009993021, -0.061767623, 0.8916472)
 bones/65/rotation = Quaternion(0.3955748, 0.053043924, -0.023280371, 0.9166051)
 
 [node name="NPC Marker" parent="." unique_id=1113161066 instance=ExtResource("3_4gpyc")]
+visible = false
 
 [editable path="CIV1"]

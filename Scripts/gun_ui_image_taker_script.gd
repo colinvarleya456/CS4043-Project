@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 #@export_tool_button("Hello", "Callable") var hello_action = takeImage
 
 @onready var sub_viewport: SubViewport = $SubViewport
-
+@export var index : int = 1
 func takeImage(inputModel):
 	
 	if gun_holder.get_child_count() > 0:

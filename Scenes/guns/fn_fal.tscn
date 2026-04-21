@@ -42,7 +42,7 @@ _data = {
 &"ads": SubResource("Animation_cgbnk")
 }
 
-[node name="Fn Fal" unique_id=1976406460 node_paths=PackedStringArray("casingEject") instance=ExtResource("1_vcjcl")]
+[node name="Fn Fal" unique_id=1976406460 node_paths=PackedStringArray("end_of_barrel", "end_of_barrel_look_at", "muzzle_point", "casingEject") instance=ExtResource("1_vcjcl")]
 script = ExtResource("2_cgbnk")
 canShoot = false
 weaponName = "a"
@@ -58,6 +58,9 @@ vRecoil = 0.1
 hRecoil = 0.1
 gunSFX = Array[AudioStreamWAV]([ExtResource("3_2leic"), ExtResource("4_l6jrp"), ExtResource("5_mqyds")])
 silencedGunSFX = Array[AudioStreamWAV]([ExtResource("4_l6jrp")])
+end_of_barrel = NodePath("Armature/Skeleton3D/a/end_of_barrel")
+end_of_barrel_look_at = NodePath("Armature/Skeleton3D/a/end_of_barrel_look_at")
+muzzle_point = NodePath("Armature/Skeleton3D/a/end_of_barrel")
 casingEject = NodePath("Armature/Skeleton3D/a/Node3D")
 
 [node name="end_of_barrel" type="Node3D" parent="Armature/Skeleton3D/a" parent_id_path=PackedInt32Array(437075492) index="0" unique_id=509464055]

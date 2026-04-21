@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://1ei30plq3o6e"]
 
 [ext_resource type="Script" uid="uid://uhsg7mc5jfxl" path="res://Scripts/gun_ui_image_taker_script.gd" id="1_is84r"]
-[ext_resource type="PackedScene" uid="uid://do45g6f1npwm3" path="res://Blender/Fn Fal.blend" id="1_kjvsm"]
+[ext_resource type="PackedScene" uid="uid://kxkrmlrqpxgh" path="res://Scenes/guns/glock.tscn" id="2_is84r"]
 
 [sub_resource type="Environment" id="Environment_is84r"]
 background_mode = 1
@@ -26,7 +26,7 @@ size_2d_override_stretch = true
 [node name="GunHolder" type="Node3D" parent="SubViewport" unique_id=279954253]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -0.48806196)
 
-[node name="Fn Fal" parent="SubViewport/GunHolder" unique_id=62793824 instance=ExtResource("1_kjvsm")]
+[node name="Glock" parent="SubViewport/GunHolder" unique_id=1086288256 instance=ExtResource("2_is84r")]
 
 [node name="Camera3D" type="Camera3D" parent="SubViewport" unique_id=792444931]
 fov = 132.4

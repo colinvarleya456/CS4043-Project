@@ -245,14 +245,14 @@ func changeWeapon(picked_weapon : int, weapon_scene : PackedScene, gunName): #0 
 		match pos:
 			0:
 				playerUI.gun1Name = gunName
-				playerUI.gun1Texture.texture = gun_ui_image_taker.takeImage(load("res://Blender/Fn Fal.blend"))
+				playerUI.gun1Texture.texture = gun_ui_image_taker.takeImage(weapon_scene)
 			1:
 				playerUI.gun2Name = gunName
-				playerUI.gun2Texture.texture = gun_ui_image_taker.takeImage(load("res://Blender/Fn Fal.blend"))
+				playerUI.gun2Texture.texture = gun_ui_image_taker.takeImage(weapon_scene)
 			2:
 				playerUI.gun3Name = gunName
-				playerUI.gun3Texture.texture = gun_ui_image_taker.takeImage(load("res://Blender/Fn Fal.blend"))
-		
+				playerUI.gun3Texture.texture = gun_ui_image_taker.takeImage(weapon_scene)
+		await get_tree().create_timer(1).timeout
 		
 		
 		var t = weapon_scene.instantiate()
@@ -289,10 +289,6 @@ func throwGrenade():
 		grenade.position = held_object_position.global_position
 		world.add_child(grenade)
 		grenade.apply_central_impulse(-player_cam.global_transform.basis.z * throwStrength)
-		
-		
-	else:
-		pass
 
 @onready var playerUI : Control = $"../../UI/Player"
 @onready var gun_ui_image_taker: Node3D = $"../GunUIImageTaker"
