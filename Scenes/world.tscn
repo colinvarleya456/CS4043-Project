@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://0364oory73cw" path="res://Scenes/turret.tscn" id="22_pyn1s"]
 [ext_resource type="PackedScene" uid="uid://t3lmytrbk61i" path="res://Blender/LargeDumpster.blend" id="23_no8kt"]
 [ext_resource type="PackedScene" uid="uid://cu6oirdxtywvh" path="res://Blender/trashcan1.blend" id="24_xbk3s"]
+[ext_resource type="PackedScene" uid="uid://cdwmwo27n5bfo" path="res://Blender/Shelf.blend" id="25_i4fjy"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_5a7ea"]
 panorama = ExtResource("1_5a7ea")
@@ -39,7 +40,7 @@ sky = SubResource("Sky_go701")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_xbk3s"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_pt3ps"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_x6mqx"]
@@ -614,7 +615,7 @@ environment = SubResource("Environment_5a7ea")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 
 [node name="Sprite3D" parent="3D/GunUIImageTaker" index="1" unique_id=763784311]
-texture = SubResource("ViewportTexture_xbk3s")
+texture = SubResource("ViewportTexture_pt3ps")
 
 [node name="Player" parent="3D" unique_id=1623261914 instance=ExtResource("1_a02cp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -72.40322, 0, 52.582962)
@@ -752,6 +753,12 @@ transform = Transform3D(-0.76913184, 0, 0.6390901, 0, 1, 0, -0.6390901, 0, -0.76
 
 [node name="Fn Fal" parent="3D" unique_id=536415189 instance=ExtResource("16_hgpy0")]
 transform = Transform3D(0.38508472, 0, -0.92288125, 0, 1, 0, 0.92288125, 0, 0.38508472, 31.996, 0.5, 33.053)
+
+[node name="Shelf" parent="3D" unique_id=1548656073 instance=ExtResource("25_i4fjy")]
+transform = Transform3D(-3.4939498e-05, 0, 1, 0, 1, 0, -1, 0, -3.4939498e-05, 37.458324, -0.9182267, -45.057945)
+
+[node name="Shelf2" parent="3D" unique_id=2081391578 instance=ExtResource("25_i4fjy")]
+transform = Transform3D(-0.49181584, 0, -0.8706992, 0, 1, 0, 0.8706992, 0, -0.49181584, -2.6042132, -1.3096266, -54.27711)
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/StartGame" to="MainMenu" method="_on_start_game_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/Settings" to="MainMenu" method="_on_settings_pressed"]
