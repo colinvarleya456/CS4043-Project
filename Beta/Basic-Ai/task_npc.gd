@@ -30,7 +30,7 @@ signal eventHeard(type: event_bus.EVENT_TYPE, pos: Vector3)
 
 @onready var animation_player: AnimationPlayer = $CIV1/AnimationPlayer
 @onready var body: Node3D = $CIV1
-@onready var player: CharacterBody3D = $"3D/Player"
+@onready var player: CharacterBody3D = $"/root/World/3D/Player"
 
 func _ready() -> void:
 	connect("hit", hitFunc)
